@@ -2,6 +2,10 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <v-card
+    dark="true">
+      punten
+    </v-card>
   </div>
 </template>
 
