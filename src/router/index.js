@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/views/Home.vue'
+import LandingPage from '@/views/LandingPage.vue'
 
 Vue.use(Router)
 
@@ -10,8 +10,23 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'landingPage',
+      component: LandingPage
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import(/* webpackChunkName: "p-login" */ '@/views/Login.vue')
+    },
+    {
+      path: '/home',
       name: 'home',
-      component: Home
+      component: () => import(/* webpackChunkName: "p-home" */ '@/views/Home.vue')
+    },
+    {
+      path: '/main',
+      name: 'main',
+      component: () => import(/* webpackChunkName: "p-home" */ '@/views/Main.vue')
     },
     {
       path: '/about',
