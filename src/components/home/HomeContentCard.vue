@@ -1,6 +1,6 @@
 <template>
   <div class="cust-card d-flex flex-wrap">
-    <div class="cust-card__items no-gutters">
+    <a href="/main" class="cust-card__items no-gutters">
       <div class="cust-card__items-title">
         Website Development
       </div>
@@ -24,182 +24,7 @@
         <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
         class="cust-card__items-picture">
       </div>
-    </div>
-    <div class="cust-card__items no-gutters">
-      <div class="cust-card__items-title">
-        Website Development
-      </div>
-      <div class="cust-card__items-description">
-        Research, Wireframe, Test, Visual Design
-      </div>
-      <div class="d-flex align-items-center">
-        <font-awesome-icon
-          icon="stopwatch"
-          class="icon"
-        />
-        <span class="time">5 Agustus 2020</span>
-      </div>
-      <div>
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-      </div>
-    </div>
-    <div class="cust-card__items no-gutters">
-      <div class="cust-card__items-title">
-        Website Development
-      </div>
-      <div class="cust-card__items-description">
-        Research, Wireframe, Test, Visual Design
-      </div>
-      <div class="d-flex align-items-center">
-        <font-awesome-icon
-          icon="stopwatch"
-          class="icon"
-        />
-        <span class="time">5 Agustus 2020</span>
-      </div>
-      <div>
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-      </div>
-    </div>
-    <div class="cust-card__items no-gutters">
-      <div class="cust-card__items-title">
-        Website Development
-      </div>
-      <div class="cust-card__items-description">
-        Research, Wireframe, Test, Visual Design
-      </div>
-      <div class="d-flex align-items-center">
-        <font-awesome-icon
-          icon="stopwatch"
-          class="icon"
-        />
-        <span class="time">5 Agustus 2020</span>
-      </div>
-      <div>
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-      </div>
-    </div>
-    <div class="cust-card__items no-gutters">
-      <div class="cust-card__items-title">
-        Website Development
-      </div>
-      <div class="cust-card__items-description">
-        Research, Wireframe, Test, Visual Design
-      </div>
-      <div class="d-flex align-items-center">
-        <font-awesome-icon
-          icon="stopwatch"
-          class="icon"
-        />
-        <span class="time">5 Agustus 2020</span>
-      </div>
-      <div>
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-      </div>
-    </div>
-    <div class="cust-card__items no-gutters">
-      <div class="cust-card__items-title">
-        Website Development
-      </div>
-      <div class="cust-card__items-description">
-        Research, Wireframe, Test, Visual Design
-      </div>
-      <div class="d-flex align-items-center">
-        <font-awesome-icon
-          icon="stopwatch"
-          class="icon"
-        />
-        <span class="time">5 Agustus 2020</span>
-      </div>
-      <div>
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-      </div>
-    </div>
-    <div class="cust-card__items no-gutters">
-      <div class="cust-card__items-title">
-        Website Development
-      </div>
-      <div class="cust-card__items-description">
-        Research, Wireframe, Test, Visual Design
-      </div>
-      <div class="d-flex align-items-center">
-        <font-awesome-icon
-          icon="stopwatch"
-          class="icon"
-        />
-        <span class="time">5 Agustus 2020</span>
-      </div>
-      <div>
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-      </div>
-    </div>
-    <div class="cust-card__items no-gutters">
-      <div class="cust-card__items-title">
-        Website Development
-      </div>
-      <div class="cust-card__items-description">
-        Research, Wireframe, Test, Visual Design
-      </div>
-      <div class="d-flex align-items-center">
-        <font-awesome-icon
-          icon="stopwatch"
-          class="icon"
-        />
-        <span class="time">5 Agustus 2020</span>
-      </div>
-      <div>
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="cust-card__items-picture">
-      </div>
-    </div>
+    </a>
     <div
       class="cust-card__floating-button shadow"
       v-b-modal.add-project
@@ -224,6 +49,7 @@
         id="project-name"
         class="input"
         placeholder="Project name"
+        v-model="projectName"
       />
       <label
         for="project-desc"
@@ -235,6 +61,7 @@
         placeholder="Description"
         class="input text-area"
         id="project-desc"
+        v-model="projectDescription"
       />
       <label
         for="project-name"
@@ -243,7 +70,7 @@
         Project Member (optional)
       </label>
       <vue-bootstrap-typeahead
-        v-model="queryEmail"
+        v-model="queryUsername"
         placeholder="Username"
         :data="['Canada', 'USA', 'Mexico']"
         class="input"
@@ -251,7 +78,7 @@
       <div class="modal-section">
         <button
           class="modal-section__button"
-          @click="(emailFormat && passwordFormat && email && password) && doLogin()"
+          @click="(projectName && projectDescription) && createProject()"
         >
           Create Project
         </button>
@@ -271,6 +98,8 @@
     border-radius: 10px;
     box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.07);
     background: white;
+    color: black;
+    text-decoration: none;
     &-title{
       font-weight: 900;
       font-size: 18px;

@@ -1,6 +1,7 @@
 <template>
   <div class="header shadow-sm px-3 d-flex align-items-center">
-    <div class="header__logo">
+    <div class="header__logo"
+    @click="back">
       <font-awesome-icon
         icon="chevron-left"
       />
@@ -10,6 +11,12 @@
 
 <script>
 export default {
+  name: 'plain-header',
+  methods: {
+    back () {
+      window.history.back()
+    }
+  }
 }
 </script>
 

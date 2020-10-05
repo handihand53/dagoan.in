@@ -7,7 +7,14 @@ export default {
   },
   data () {
     return {
-      queryEmail: ''
+      projectName: '',
+      projectDescription: '',
+      queryUsername: ''
+    }
+  },
+  methods: {
+    createProject () {
+      console.log('project created')
     }
   }
 }

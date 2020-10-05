@@ -4,8 +4,11 @@
       <div class="header-top__content d-flex justify-content-between row no-gutters">
         <div class="row no-gutters">
           <div class="nav-list">
-            <img src="@/assets/logo/dagoan.in logo blue.png" alt=""
-            class="brand">
+            <img
+              src="@/assets/logo/dagoan.in logo blue.png"
+              alt=""
+              class="brand"
+            >
           </div>
           <div class="nav-list fromCenter">
             Features
