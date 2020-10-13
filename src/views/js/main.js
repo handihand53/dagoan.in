@@ -1,4 +1,5 @@
 import PlainHeader from '@/components/PlainHeader.vue'
+import NavBar from '@/components/home/NavBar.vue'
 import draggable from 'vuedraggable'
 
 export default {
@@ -7,7 +8,8 @@ export default {
   order: 1,
   components: {
     draggable,
-    PlainHeader
+    PlainHeader,
+    NavBar
   },
   data () {
     return {
@@ -18,6 +20,7 @@ export default {
       image: [],
       imageName: [],
       isAddLabel: false,
+      comment: '',
       optionsStatus: [
         { value: 1, text: 'On Going' },
         { value: 0, text: 'Finished' }

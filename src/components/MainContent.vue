@@ -26,7 +26,9 @@
         data-aos-once="true"
         data-aos-duration="900"
       >
-        Lorem ipsum dolor sit amet, adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+        Dagoan.in is here for you.
+        <br>
+        Track time for anytime — all data is synced online.
       </div>
       <img
         data-aos="zoom-in"
@@ -64,7 +66,7 @@
                   Time Tracker
                 </div>
                 <div class="card-body">
-                  this apps is for time tracker app
+                  This apps is help you for track your project time
                 </div>
               </div>
             </div>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg">
     <MainHeader/>
     <div class="main-section">
       Selamat datang, {{ name }}
@@ -14,5 +14,10 @@
 .main-section{
   padding: 10px 10px 2px 10px;
   z-index: 1;
+}
+
+.bg{
+  background: #F2F6F8;
+  height: 100vh;
 }
 </style>

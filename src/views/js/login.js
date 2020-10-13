@@ -30,11 +30,10 @@ export default {
         loader: 'bars',
         color: '#0090FF'
       })
-
-      this.$router.push('/home')
-      // setTimeout(, 2000000)
-      // untuk hide
-      loader.hide()
+      setTimeout(() => {
+        loader.hide()
+        this.$router.push('/home')
+      }, 2000)
     }
   }
 }
