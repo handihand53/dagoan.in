@@ -3,6 +3,7 @@
     <MainHeader/>
     <div class="main-section">
       Selamat datang, {{ name }}
+      {{ currentUser }}
     </div>
     <HomeTab/>
   </div>

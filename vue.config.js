@@ -1,10 +1,28 @@
+const CompressionPlugin = require('compression-webpack-plugin')
+
 module.exports = {
+  chainWebpack (config) {
+    config.plugins.delete('prefetch')
+    // and this line
+    config.plugin('CompressionPlugin').use(CompressionPlugin)
+  },
   // assetsDir: 'static',
   // lintOnSave: false,
-  // http://www.mocky.io/v2/5ebd20b931000062005b10c0
+
   // proxy table
   devServer: {
-    disableHostCheck: true
-    // proxy: 'http://localhost:8081',
+    proxy: {
+      '/v3/*': {
+        target: 'https://run.mocky.io/',
+        changeOrigin: true,
+        secure: false
+      },
+      '^/api/': {
+        target: 'http://dummy.restapiexample.com/',
+        changeOrigin: true,
+        pathRewrite: { '^/api/': '/api/' },
+        logLevel: 'debug'
+      }
+    }
   }
 }

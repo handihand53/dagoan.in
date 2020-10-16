@@ -34,6 +34,11 @@ export default new Router({
       component: () => import(/* webpackChunkName: "p-reports" */ '@/views/Reports.vue')
     },
     {
+      path: '/chat',
+      name: 'chat',
+      component: () => import(/* webpackChunkName: "p-chat" */ '@/views/Chat.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting

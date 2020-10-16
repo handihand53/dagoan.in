@@ -3,6 +3,11 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './registerServiceWorker'
+// import socketio from 'socket.io'
+
+// chat
+import Chat from 'vue-beautiful-chat'
+import VueSocketIO from 'vue-socket.io'
 
 // import enlarge image
 import VueExpandableImage from 'vue-expandable-image'
@@ -36,6 +41,8 @@ import { BootstrapVue } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+// export const SocketInstance = socketio('http://localhost:3000')
+
 // Install BootstrapVue
 Vue.use(BootstrapVue)
 
@@ -50,10 +57,26 @@ Vue.use(VueExpandableImage)
 // Vue.use(Toasted)
 Vue.use(VueToast)
 
+// Instal chat
+Vue.use(Chat)
+
 // Install fontawesome
 Vue.use(FontAwesomeIcon)
 library.add(fas)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+// SocketIo Conf
+Vue.use(new VueSocketIO({
+  debug: true,
+  connection: 'http://localhost:3000/',
+  vuex: {
+    store,
+    actionPrefix: 'SOCKET_',
+    mutationPrefix: 'SOCKET_'
+  }
+  // Optional options
+  // options: { path: '/chat' }
+}))
 
 Vue.config.productionTip = false
 

@@ -3,39 +3,41 @@
     <BarChart
       class="shadow-sm p-2 mb-3 chart-color"
     />
-    <div class="detailed shadow-sm">
-      <div class="detailed__title">
-        Report Detail
-      </div>
-      <div class="detailed__content">
-        <b-table responsive
-          :items="items"
-          :fields="fields"
-          small
-          primary-key="a"
-          class="tab-custom"
-          :tbody-transition-props="transProps"
-        >
-          <template v-slot:cell(Tag)="row">
-            <div
-              class="tag"
-              :style="`background-color: ${row.item.tagColor}`"
-            >
-              Release
-            </div>
-          </template>
-
-          <template v-slot:cell(Assign)="row">
-            <div class="d-flex">
-              <img
-                class="image-assign"
-                :src="row.item.Assign.url"
-                :alt="row.item.Assign.name"
+    <div class="detailed p-2">
+      <div class="shadow-sm">
+        <div class="detailed__title">
+          Report Detail
+        </div>
+        <div class="detailed__content">
+          <b-table responsive
+            :items="items"
+            :fields="fields"
+            small
+            primary-key="a"
+            class="tab-custom"
+            :tbody-transition-props="transProps"
+          >
+            <template v-slot:cell(Tag)="row">
+              <div
+                class="tag"
+                :style="`background-color: ${row.item.tagColor}`"
               >
-              {{row.item.Assign.name}}
-            </div>
-          </template>
-        </b-table>
+                Release
+              </div>
+            </template>
+
+            <template v-slot:cell(Assign)="row">
+              <div class="d-flex">
+                <img
+                  class="image-assign"
+                  :src="row.item.Assign.url"
+                  :alt="row.item.Assign.name"
+                >
+                {{row.item.Assign.name}}
+              </div>
+            </template>
+          </b-table>
+        </div>
       </div>
     </div>
   </div>
@@ -55,6 +57,7 @@
 /deep/ td {
   padding: 4px;
   font-weight: 600;
+  vertical-align: middle;
 }
 </style>
 
@@ -71,7 +74,7 @@
 }
 
 .tab-custom {
-  padding: 0px 5px;
+  margin-bottom: 0px;
 }
 
 .tag{
