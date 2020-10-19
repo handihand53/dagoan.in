@@ -34,6 +34,7 @@
     "vue-chartjs": "^3.5.1",
     "vue-expandable-image": "^0.1.0",
     "vue-loading-overlay": "^3.4.1",
+    "vue-resource": "^1.5.1",
     "vue-router": "^3.0.3",
     "vue-socket.io": "^3.0.10",
     "vue-toast-notification": "^0.5.4",

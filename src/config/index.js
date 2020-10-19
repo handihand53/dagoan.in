@@ -1,3 +1,5 @@
+// const endpoint = 'http://localhost:5000'
+
 export default {
   api: {
     base_path: '',
@@ -13,7 +15,8 @@ export default {
         // return `api/films/${number}`
         // return `https://run.mocky.io/v3/12869b47-9508-4ebf-b9a0-178c947b772d`
       }
-    }
+    },
+    chat: '/clients'
   },
   getApiPath: function (apiPath) {
     return this.api.base_path + apiPath

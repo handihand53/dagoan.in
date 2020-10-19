@@ -2,7 +2,9 @@ import api from '@/api'
 
 export const state = {
   isLogin: false,
-  currentUser: []
+  currentUser: [],
+  clients: [],
+  loading: false
 }
 
 export const mutations = {
@@ -11,6 +13,12 @@ export const mutations = {
   },
   setCurrentUser (state, value) {
     state.currentUser = value
+  },
+  setClients (state, payload) {
+    state.clients = payload
+  },
+  setLoading (state, payload) {
+    state.loading = payload
   }
 }
 
@@ -22,7 +30,26 @@ export const actions = {
         resolve()
       }, { number })
     })
-  }
+  },
+  getConnectedClients: ({ commit }) => new Promise((resolve, reject) => {
+    console.log('terpanggil')
+    const onSuccess = (response) => {
+      commit('setClients', response.body)
+      commit('setLoading', false)
+
+      resolve(response)
+    }
+
+    const onError = (error) => {
+      commit('setClients', [])
+      commit('setLoading', false)
+      reject(error)
+    }
+
+    commit('setLoading', true)
+
+    api.getConnectedClients().then(onSuccess).catch(onError)
+  })
 }
 
 export const getters = {
@@ -31,6 +58,9 @@ export const getters = {
   },
   currentUser (state) {
     return state.currentUser
+  },
+  clientList (state) {
+    return state.clients
   }
 }
 

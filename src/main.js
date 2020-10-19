@@ -2,11 +2,13 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import vueResource from 'vue-resource'
 import './registerServiceWorker'
 // import socketio from 'socket.io'
 
 // chat
 import Chat from 'vue-beautiful-chat'
+import * as io from 'socket.io-client'
 import VueSocketIO from 'vue-socket.io'
 
 // import enlarge image
@@ -64,21 +66,31 @@ Vue.use(Chat)
 Vue.use(FontAwesomeIcon)
 library.add(fas)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
-
+Vue.use(vueResource)
 // SocketIo Conf
-Vue.use(new VueSocketIO({
-  debug: true,
-  connection: 'http://localhost:3000/',
-  vuex: {
-    store,
-    actionPrefix: 'SOCKET_',
-    mutationPrefix: 'SOCKET_'
-  }
-  // Optional options
-  // options: { path: '/chat' }
-}))
+// Vue.use(VueSocketIO, io('http://localhost:5000'))
+// const SocketInstance = io.connect('http://localhost:5000', {
+//   query: {
+//     token: window.localStorage.getItem('auth')
+//   }
+// })
 
+// Vue.use(new VueSocketIO({
+//   debug: true,
+//   connection: SocketInstance
+// }), store)
+Vue.use(
+  new VueSocketIO({
+    debug: false,
+    connection: io('http://localhost:5000'), // options object is Optional
+    options: { path: '/chat' },
+    vuex: {
+      store
+    }
+  })
+)
 Vue.config.productionTip = false
+// Vue.use(new VueSocketIO, io('http://localhost:5000'), store)
 
 new Vue({
   // vuetify,
