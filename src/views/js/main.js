@@ -1,30 +1,26 @@
 import PlainHeader from '@/components/PlainHeader.vue'
 import NavBar from '@/components/home/NavBar.vue'
 import draggable from 'vuedraggable'
+import DetailCard from '@/components/modal/DetailCard.vue'
+import AddTask from '@/components/modal/AddTask.vue'
+import EditList from '@/components/modal/EditList.vue'
+import EditProject from '@/components/modal/EditProject.vue'
 
 export default {
   name: 'main-component',
   display: 'Two Lists',
   order: 1,
   components: {
+    AddTask,
+    DetailCard,
     draggable,
+    EditList,
+    NavBar,
     PlainHeader,
-    NavBar
+    EditProject
   },
   data () {
     return {
-      projectName: '',
-      projectDescription: '',
-      projectCardTitle: '',
-      status: 1,
-      image: [],
-      imageName: [],
-      isAddLabel: false,
-      comment: '',
-      optionsStatus: [
-        { value: 1, text: 'On Going' },
-        { value: 0, text: 'Finished' }
-      ],
       list1: [
         {
           id: 1,
@@ -83,23 +79,6 @@ export default {
     }
   },
   methods: {
-    editCardProject () {
-      console.log('edited')
-    },
-    onFileChange (e) {
-      if (
-        e.target.files[0].type === 'image/png' ||
-        e.target.files[0].type === 'image/jpeg' ||
-        e.target.files[0].type === 'image/jpg'
-      ) {
-        this.imageName.push(e.target.files[0].name)
-        this.image.push(e.target.files[0])
-      }
-    },
-    remove (idx) {
-      this.image.splice(idx, 1)
-      this.imageName.splice(idx, 1)
-    },
     add: function () {
       this.list.push({ name: 'Juan' })
     },

@@ -19,6 +19,7 @@
 
 .bg{
   background: #F2F6F8;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
 }
 </style>

@@ -3,18 +3,20 @@
     <PlainHeader/>
     <div class="">
       <div class="main-body__section">
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center justify-content-between">
           <div class="main-body__title">
             Website Development
           </div>
-          <div class="main-body__status">
-            On Going
+          <div class="d-flex">
+            <font-awesome-icon
+              class="ml-1 main-body__edit"
+              icon="pencil-alt"
+              v-b-modal.edit-project
+            />
+            <div class="main-body__status">
+              On Going
+            </div>
           </div>
-          <font-awesome-icon
-            class="ml-1 main-body__edit"
-            icon="pencil-alt"
-            v-b-modal.edit-project
-          />
         </div>
         <div class="main-body__description">
           Research, Wireframe, Test, Visual Design
@@ -149,387 +151,34 @@
         </div>
       </div>
     </div>
-    <!-- Modal edit project -->
-    <b-modal
-      id="edit-project"
-      centered
-      title="Edit Project"
-      class="edit-project-modal"
-      hide-footer
-    >
-      <label
-        for="project-name"
-        class="label-project"
-      >
-        Project Name<span class="red">*</span>
-      </label>
-      <b-input
-        id="project-name"
-        class="input"
-        placeholder="Project name"
-        v-model="projectName"
-      />
-      <label
-        for="project-desc"
-        class="label-project"
-      >
-        Project Description<span class="red">*</span>
-      </label>
-      <b-textarea
-        placeholder="Description"
-        class="input text-area"
-        id="project-desc"
-        v-model="projectDescription"
-      />
-      <label
-        for="project-name"
-        class="label-project"
-      >
-        Project Status
-      </label>
-      <b-form-select
-        v-model="status"
-        :options="optionsStatus"
-        class=""
-      ></b-form-select>
-      <div class="modal-section">
-        <button
-          class="modal-section__button"
-          @click="(projectName && projectDescription) && createProject()"
-        >
-          Create Project
-        </button>
-      </div>
-    </b-modal>
 
-    <!-- Modal edit card -->
-    <b-modal
-      id="edit-card"
-      centered
-      title="Edit Project Card"
-      class="edit-project-modal"
-      hide-footer
-    >
-      <label
-        for="project-name"
-        class="label-project"
-      >
-        Project Card Title<span class="red">*</span>
-      </label>
-      <b-input
-        id="project-name"
-        class="input"
-        placeholder="Project Card Title"
-        v-model="projectCardTitle"
-      />
-      <div class="modal-section">
-        <button
-          class="modal-section__button"
-          @click="(projectCardTitle) && editCardProject()"
-        >
-          Edit Project Card
-        </button>
-      </div>
-    </b-modal>
+    <!-- modal start  -->
+    <edit-project/>
+    <edit-list/>
+    <add-task/>
+    <detail-card/>
+    <!-- modal end  -->
 
-    <!-- Modal add task -->
-    <div
-      class="black-bg-overlay"
-      :class="{'show': isAddLabel}">
-    </div>
-    <b-modal
-      id="add-card"
-      centered
-      title="Add New Card"
-      class="add-project-modal"
-      hide-footer
-    >
-      <label
-        for="project-name"
-        class="label-project"
-      >
-        <font-awesome-icon
-          icon="book"
-          class="logo-icon"
-        />
-        Title Card<span class="red">*</span>
-      </label>
-      <b-input
-        id="project-name"
-        class="input"
-        placeholder="Project Card Title"
-      />
-      <label
-        for="project-name"
-        class="label-project"
-      >
-        <font-awesome-icon
-          icon="tag"
-          class="logo-icon"
-        />
-        Label Card<span class="red">*</span>
-      </label>
-      <div>
-        <button
-          class="add-label z-index-button"
-          @click="isAddLabel = !isAddLabel"
-        >
-          Add Label
-        </button>
-      </div>
-      <label
-        for="project-name"
-        class="label-project"
-      >
-        <font-awesome-icon
-          icon="clock"
-          class="logo-icon"
-        />
-        Estimate Time<span class="red">*</span>
-      </label>
-      <b-input
-        id="project-name"
-        class="input"
-        type="number"
-        placeholder="ex: 1 / 4 / 10"
-      />
-      <label
-        for="project-name"
-        class="label-project"
-      >
-        <font-awesome-icon
-          icon="list-alt"
-          class="logo-icon"
-        />
-        Description<span class="red">*</span>
-      </label>
-      <b-textarea
-        placeholder="Description"
-        class="input text-area"
-        id="project-desc"
-      />
-      <label
-        for="project-name"
-        class="label-project"
-      >
-        <font-awesome-icon
-          icon="paperclip"
-          class="logo-icon"
-        />
-        Attachments
-      </label>
-      <div class="input-group">
-        <div class="custom-file">
-            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-            <input type="file" class="custom-file-input" id="inputGroupFile01"
-            aria-describedby="inputGroupFileAddon01" @change="onFileChange">
-        </div>
-      </div>
-      <div class="mt-3">
-        <p class="m-0 p-0 fs-12" v-for="(name, idx) in imageName" :key="idx">{{name}}
-          <font-awesome-icon class="fs-icon" icon="times" @click="remove(idx)"/></p>
-      </div>
-      <div class="modal-section">
-        <button
-          class="modal-section__button"
-          @click="(projectCardTitle) && editCardProject()"
-        >
-          Add Card
-        </button>
-      </div>
-    </b-modal>
-
-    <!-- Modat detail card -->
-    <b-modal
-      id="detail-card"
-      centered
-      title="Add New Card"
-      class="add-project-modal"
-      hide-footer
-      hide-header
-    >
-      <div
-        for="project-name"
-        class="label-project-detailed mb-3"
-      >
-        <font-awesome-icon
-          icon="book"
-          class="logo-icon"
-        />
-        Create Design Mock Up
-      </div>
-      <div
-        for="project-name"
-        class="label-project-detailed mb-1"
-      >
-        <font-awesome-icon
-          icon="tag"
-          class="logo-icon"
-        />
-        Label Card
-      </div>
-      <div class="d-flex pl-3 mb-3 flex-wrap">
-        <div
-          class="label-color-detailed"
-          style="background-color: #D323BD"
-        >
-          Tips
-        </div>
-        <div
-          class="label-color-detailed"
-          style="background-color: #FFA000"
-        >
-          Front End
-        </div>
-        <div
-          class="label-color-detailed"
-          style="background-color: #344563"
-        >
-          UI/UX
-        </div>
-        <div
-          class="label-color-detailed"
-          style="background-color: #EB5A46"
-        >
-          Urgent
-        </div>
-        <div
-          class="label-color-detailed"
-          style="background-color: #61BD4F"
-        >
-          Retro
-        </div>
-        <div
-          class="label-color-detailed"
-          style="background-color: #00C2E0"
-        >
-          Future
-        </div>
-      </div>
-      <label
-        for="project-name"
-        class="label-project-detailed"
-      >
-        <font-awesome-icon
-          icon="stopwatch"
-          class="logo-icon"
-        />
-        03:00:00
-      </label>
-      <div
-        for="project-name"
-        class="label-project-detailed"
-      >
-        <font-awesome-icon
-          icon="list-alt"
-          class="logo-icon"
-        />
-        Description
-      </div>
-      <div class="label-desc-detailed mb-3">
-        Lorem Ipsum is simply dummy text of the printing and
-        typesetting industry. Lorem Ipsum has been the industry's
-        standard dummy text ever since the 1500s, when an unknown
-        printer took a galley of type and scrambled it to make a type
-        specimen book. It has survived not only five centuries
-      </div>
-      <div
-        for="project-name"
-        class="label-project-detailed"
-      >
-        <font-awesome-icon
-          icon="paperclip"
-          class="logo-icon"
-        />
-        Attachments
-      </div>
-      <div class="d-flex align-content-start flex-wrap">
-        <div class="m-1">
-          <expandable-image
-            class="img-attachments"
-            src="https://images.unsplash.com/photo-1550948537-130a1ce83314?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2552&q=80"
-            alt="dog"
-            title="dog"
-          ></expandable-image>
-        </div>
-        <div class="m-1">
-          <expandable-image
-            class="img-attachments"
-            src="https://www.vectortiles.com/wp-content/uploads/checkers-vector-tiles-02-300x300.jpg"
-            alt="dog"
-            title="dog"
-          ></expandable-image>
-        </div>
-      </div>
-      <div
-        for="project-name"
-        class="label-project-detailed mb-2 mt-4"
-      >
-        <font-awesome-icon
-          icon="comment-alt"
-          class="logo-icon"
-        />
-        Comment
-      </div>
-      <div class="d-flex justify-content-between">
-        <b-textarea
-          id="project-name"
-          class="input"
-          placeholder="Write a comment"
-          v-model="comment"
-        />
-        <div class="ml-2">
-          <b-button
-           variant="primary"
-          >
-            <font-awesome-icon
-              icon="plus"
-              class="logo-icon-button"
-            />
-          </b-button>
-        </div>
-      </div>
-      <div>
-        <div class="d-flex mt-2 comment">
-          <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-          class="logo-comment">
-          <div class="comment-section-detailed">
-            <div class="comment-name">
-              David Beckham
-            </div>
-            <div class="comment-content mt-1">
-              Tolong detail diperhatikan lagi, jika ada yg ditanyakan hubungi 0238123414124
-            </div>
-          </div>
-        </div>
-        <div class="d-flex mt-2">
-          <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-          class="logo-comment">
-          <div class="comment-section-detailed">
-            <div class="comment-name">
-              David Beckham
-            </div>
-            <div class="comment-content mt-1">
-              Tolong detail diperhatikan lagi, jika ada yg ditanyakan hubungi 0238123414124
-            </div>
-          </div>
-        </div>
-      </div>
-    </b-modal>
-    <NavBar/>
+    <!-- nav bar -->
+    <nav-bar/>
   </div>
 </template>
 
 <script src="./js/main.js"></script>
 
-<style lang="scss" scoped>
+<style>
 .red{
   color: red;
 }
+</style>
+
+<style lang="scss" scoped>
 .main-body {
   background: #F2F6F8;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   &__edit{
+    color: #808080;
     cursor: pointer;
   }
   &__section{
@@ -539,7 +188,7 @@
     font-weight: 600;
   }
   &__status{
-    margin-left: 10px;
+    margin-left: 2px;
     color: white;
     font-size: 12px;
     padding: 2px 12px;
@@ -734,5 +383,4 @@
   border-bottom: 2px solid #0000001f;
   padding-bottom: 12px;
 }
-
 </style>

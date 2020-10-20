@@ -40,8 +40,13 @@ export default new Router({
     },
     {
       path: '/chat/:id/:name',
-      name: 'chat',
+      name: 'chat2',
       component: () => import(/* webpackChunkName: "p-chat" */ '@/views/Chat.vue')
+    },
+    {
+      path: '/team',
+      name: 'team',
+      component: () => import(/* webpackChunkName: "p-chat" */ '@/views/Team.vue')
     },
     {
       path: '/about',
