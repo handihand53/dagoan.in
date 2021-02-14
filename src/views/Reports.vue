@@ -9,7 +9,7 @@
         class="mt-2"
       >
       </b-form-select>
-      <b-form-datepicker
+      <!-- <b-form-datepicker
         id="datepicker-sm"
         size="sm"
         local="en"
@@ -18,7 +18,7 @@
         dark
         :date-format-options="{ year: 'numeric', month: 'short', day: '2-digit', weekday: 'short' }"
       >
-      </b-form-datepicker>
+      </b-form-datepicker> -->
     </div>
     <div
       v-if="selected"

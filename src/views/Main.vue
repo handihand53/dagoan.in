@@ -1,77 +1,138 @@
 <template>
   <div class="main-body">
     <PlainHeader/>
-    <div class="">
+    <div>
       <div class="main-body__section">
         <div class="d-flex align-items-center justify-content-between">
           <div class="main-body__title">
-            Website Development
+            {{ dataProject.projectName }}
           </div>
           <div class="d-flex">
             <font-awesome-icon
               class="ml-1 main-body__edit"
               icon="pencil-alt"
+              v-if="data.userId === idUser"
               v-b-modal.edit-project
             />
-            <div class="main-body__status">
+            <div
+              class="main-body__status"
+              v-if="dataProject.status === 'STATUS_ON_GOING'"
+            >
               On Going
+            </div>
+            <div
+              class="main-body__status"
+              v-else
+            >
+              Finished
             </div>
           </div>
         </div>
         <div class="main-body__description">
-          Research, Wireframe, Test, Visual Design
+            {{ dataProject.description }}
         </div>
       </div>
       <div class="main-body__list d-flex">
-        <div class="main-body__main-card shadow">
+        <div
+          class="main-body__main-card shadow"
+          v-for="(kanban, idx) in listOfKanban" :key="idx"
+        >
           <div class="d-flex justify-content-between">
             <div class="main-body__main-card__title">
-              To Do
+              {{kanban.name}}
             </div>
             <font-awesome-icon
               class=""
               icon="ellipsis-h"
+              v-if="data.userId === idUser"
               v-b-modal.edit-card
+              @click="kanbanId = kanban.kanbanId"
             />
           </div>
           <div class="main-body__main-card__list-section">
             <draggable
               class="list-group"
-              :list="list1" group="people"
-              @change="log"
+              :list="kanban.taskLists" group="people"
+              @change="logChange(kanban.taskLists, kanban.kanbanId)"
+              @end="updateData"
               v-bind="dragOptions"
             >
               <div
                 class="main-body__main-card__item"
-                v-for="(element) in list1"
-                v-b-modal.detail-card
+                v-for="(element) in kanban.taskLists"
                 :key="element.name"
               >
                 <div
-                  class="main-body__main-card__item__label"
-                  :style="`background-color: ${element.label.color}`"
+                  v-b-modal.detail-card
+                  @touchstart="kanbanDetailUpdate(kanban.kanbanId, element.taskId)"
+                  @click="$refs.child.getDetail()"
                 >
-                  {{ element.label.name }}
-                </div>
-                <div class="main-body__main-card__item__title">
-                  {{ element.name }}
+                  <div
+                    class="main-body__main-card__item__label"
+                    :style="'background:' + getLabelColorData(element.tagId)"
+                  >
+                    {{ getLabelNameData(element.tagId) }}
+                  </div>
+                  <div class="main-body__main-card__item__title">
+                    {{ element.title }}
+                  </div>
+                  <div class="main-body__main-card__item__description">
+                    {{ element.description }}
+                  </div>
                 </div>
                 <div class="d-flex align-items-center">
                   <font-awesome-icon
                     icon="stopwatch"
                     class="main-body__main-card__item__icon"
                   />
-                  <div class="main-body__main-card__item__timer">
-                    {{ element.duration }} hours
+                  <div class="main-body__main-card__item__timer"
+                    v-b-modal.detail-card
+                    @touchstart="kanbanDetailUpdate(kanban.kanbanId, element.taskId)"
+                    @click="$refs.child.getDetail()"
+                  >
+                    Estimated time: {{ getTime(element.taskEstimatedTime) }}
                   </div>
                 </div>
-                <div class="main-body__main-card__item__assign">
+                <div class="d-flex align-items-center">
+                  <font-awesome-icon
+                    icon="stopwatch"
+                    class="main-body__main-card__item__icon"
+                  />
+                  <div class="main-body__main-card__item__timer"
+                    v-b-modal.detail-card
+                    @touchstart="kanbanDetailUpdate(kanban.kanbanId, element.taskId)"
+                    @click="$refs.child.getDetail()"
+                  >
+                    Time left: {{ getTime(element.taskTimeLeft) }}
+                  </div>
+                  <div class="ml-auto"
+                    v-if="element.assignTo.userId === idUser"
+                  >
+                    <font-awesome-icon
+                      class="ml-1 main-body__edit"
+                      icon="pencil-alt"
+                      @click="setEditTime(element, kanban.kanbanId)"
+                      v-b-modal.edit-estimated-time
+                    />
+                  </div>
+                </div>
+                <div
+                  v-if="!element.assignTo.assignId"
+                  class="main-body__main-card__item__assign"
+                  @click="assignTaskTo(kanban.kanbanId, element.taskId)"
+                >
                   Assign this task to me
+                </div>
+                <div
+                  v-else
+                  class="main-body__main-card__item__assign taken"
+                >
+                  Assign to: {{element.assignTo.userName}}
                 </div>
               </div>
             </draggable>
             <div
-             v-if="!list1.length">
+             v-if="!kanban.taskLists.length">
               <div class="no-list">
                 Belum ada list
               </div>
@@ -79,6 +140,9 @@
           </div>
           <div
             class="main-body__main-card__add"
+            @touchstart="kanbanDetailUpdate(kanban.kanbanId)"
+            v-if="data.userId === idUser"
+            @click="taskListLength = kanban.taskLists.length"
             v-b-modal.add-card
           >
             <font-awesome-icon
@@ -87,62 +151,12 @@
             Add task
           </div>
         </div>
-        <div class="main-body__main-card shadow">
-          <div class="d-flex justify-content-between">
-            <div class="main-body__main-card__title">
-              In Development
-            </div>
-            <font-awesome-icon
-              class=""
-              icon="ellipsis-h"
-              v-b-modal.edit-card
-            />
-          </div>
-          <div class="main-body__main-card__list-section">
-            <div
-             v-if="!list2.length">
-              <div class="no-list">
-                Belum ada list
-              </div>
-            </div>
-            <draggable
-              class="list-group"
-              :list="list2" group="people"
-              @change="log"
-              v-bind="dragOptions"
-            >
-              <div
-                class="main-body__main-card__item"
-                v-for="(element) in list2"
-                :key="element.name"
-              >
-                <div
-                  class="main-body__main-card__item__label"
-                  :style="`background-color: ${element.label.color}`"
-                >
-                  {{ element.label.name }}
-                </div>
-                <div class="main-body__main-card__item__title">
-                  {{ element.name }}
-                </div>
-                <div class="d-flex align-items-center">
-                  <font-awesome-icon
-                    icon="stopwatch"
-                    class="main-body__main-card__item__icon"
-                  />
-                  <div class="main-body__main-card__item__timer">
-                    {{ element.duration }} hours
-                  </div>
-                </div>
-                <div class="main-body__main-card__item__assign">
-                  Assign this task to me
-                </div>
-              </div>
-            </draggable>
-          </div>
-        </div>
-        <div class="main-body__main-card main-body__main-card__add-new shadow">
-          <div class="main-body__main-card__title list-title">
+        <div class="main-body__main-card main-body__main-card__add-new shadow"
+          v-if="data.userId === idUser"
+        >
+          <div class="main-body__main-card__title list-title"
+            v-b-modal.add-new-list
+          >
             <font-awesome-icon
               icon="plus"
             />
@@ -153,10 +167,41 @@
     </div>
 
     <!-- modal start  -->
-    <edit-project/>
-    <edit-list/>
-    <add-task/>
-    <detail-card/>
+    <edit-project
+      :dataKanban="dataProject"
+      v-on:submited="getProjectDetail"
+      @click="getProjectDetail()"
+    />
+    <edit-list
+      :kanbanId="kanbanId"
+      v-on:edited-kanban="getFirstData"
+      @click="getFirstData()"
+    />
+    <edit-estimated
+      :kanbanId="kanbanId"
+      :data="ele"
+      v-on:editted-kanban="getFirstData"
+      @click="getFirstData()"
+    />
+    <add-list
+      :kanbanLength="kanbanForms.length"
+      v-on:added-kanban="getFirstData"
+      @click="getFirstData()"
+    />
+    <add-task
+      :kanbanId="kanbanId"
+      :taskId="taskId"
+      :lengthSection="taskListLength"
+      v-on:added="getFirstData"
+      @click="getFirstData()"
+    />
+    <detail-card
+      :ownerId="data.userId"
+      :kanbanId="kanbanId"
+      :taskId="taskId"
+      :labelListForm="labelListForm"
+      ref="child"
+    />
     <!-- modal end  -->
 
     <!-- nav bar -->
@@ -173,6 +218,10 @@
 </style>
 
 <style lang="scss" scoped>
+.taken{
+  font-weight: bold;
+}
+
 .main-body {
   background: #F2F6F8;
   min-height: 100vh;
@@ -211,6 +260,7 @@
     min-width: 280px;
     margin-right: 20px;
     display: table;
+    margin-bottom: 30px;
     &__add{
       margin-top: 5px;
       color: #808080;
@@ -235,7 +285,6 @@
       &__label{
         display: table;
         padding: 2px 10px;
-        // background: #D32323;
         color: white;
         font-weight: 600;
         border-radius: 8px;
@@ -253,6 +302,14 @@
         margin-left: 5px;
         font-weight: 600;
         font-size: 14px;
+      }
+      &__description{
+        font-size: 12px;
+        font-weight: 500;
+        display: -webkit-box!important;
+        overflow: hidden;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
       }
       &__assign{
         font-style: italic;

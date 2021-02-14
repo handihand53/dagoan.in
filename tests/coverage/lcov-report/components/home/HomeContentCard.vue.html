@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for components/home/HomeContentCard.vue</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\index.html">All files</a> / <a href="index.html">components/home</a> HomeContentCard.vue
+    </h1>
+    <div class='clearfix'>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import VueBootstrapTypeahead from 'vue-bootstrap-typeahead'</span>
+<span class="cstat-no" title="statement not covered" >import { mapGetters, mapActions } from 'vuex'</span>
+<span class="cstat-no" title="statement not covered" >import Cookie from 'vue-cookie'</span>
+&nbsp;
+export default {
+  name: 'homeContentCard',
+  components: {
+    VueBootstrapTypeahead
+  },
+  data () {
+<span class="cstat-no" title="statement not covered" >    return {</span>
+      displayProject: [],
+      projectName: '',
+      projectDescription: '',
+      queryUsername: '',
+      state: [
+        'STATUS_ON_GOING',
+        'STATUS_FINISHED'
+      ]
+    }
+  },
+  props: {
+    status: {
+      type: Number,
+      default: 0
+    }
+  },
+  async created () {
+<span class="cstat-no" title="statement not covered" >    await this.getListProjectId()</span>
+<span class="cstat-no" title="statement not covered" >    await this.getProjectData()</span>
+<span class="cstat-no" title="statement not covered" >    this.resetListProject()</span>
+  },
+  computed: {
+    ...mapGetters([
+      'projects',
+      'listProject',
+      'getResponse'
+    ]),
+    listOfProject () {
+<span class="cstat-no" title="statement not covered" >      return this.listProject || []</span>
+    }
+  },
+  methods: {
+    ...mapActions(['getProject', 'getListProject', 'postCreateProject', 'addMember', 'resetListProject']),
+    async getListProjectId () {
+<span class="cstat-no" title="statement not covered" >      await this.getListProject({</span>
+        data: {
+          userId: Cookie.get('dataId')
+        }
+      })
+    },
+    async getProjectData () {
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >      await this.listOfProject.member.listProjectId.forEach((id) =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        this.getProject({</span>
+          data: id
+        })
+      })
+    },
+    setProjectDisplay () {
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >      this.displayProject = this.projects.filter(project =&gt; project.data.projects.status === this.state[this.status])</span></span>
+    },
+    createProject () {
+<span class="cstat-no" title="statement not covered" >      let loader = this.$loading.show({</span>
+        container: this.fullPage ? null : this.$refs.formContainer,
+        canCancel: false,
+        loader: 'bars',
+        color: '#0090FF',
+        opacity: 0.1
+      })
+<span class="cstat-no" title="statement not covered" >      this.postCreateProject({</span>
+        data: {
+          description: this.projectDescription,
+          memberForm: [],
+          projectName: this.projectName,
+          userId: Cookie.get('dataId')
+        },
+        success: this.successAdd,
+        fail: this.failAdd(loader)
+      })
+    },
+    successAdd () {
+<span class="cstat-no" title="statement not covered" >      this.addMember({</span>
+        data: {
+          projectId: this.getResponse.data.projectId,
+          userId: Cookie.get('dataId')
+        },
+<span class="fstat-no" title="function not covered" >        success: () =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          this.$router.push(`/main/${this.getResponse.data.projectId}`)</span>
+        },
+<span class="fstat-no" title="function not covered" >        fail: () =&gt; {}</span>
+      })
+    },
+    failAdd (loader) {
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >      setTimeout(() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        loader.hide()</span>
+      }, 1000)
+    }
+  },
+  watch: {
+    status: {
+      immediate: true,
+<span class="fstat-no" title="function not covered" >      handler: function () {</span>
+<span class="cstat-no" title="statement not covered" >        this.setProjectDisplay()</span>
+      }
+    },
+    projects: {
+      immediate: true,
+<span class="fstat-no" title="function not covered" >      handler: function () {</span>
+<span class="cstat-no" title="statement not covered" >        this.setProjectDisplay()</span>
+      }
+    }
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Feb 15 2021 01:10:23 GMT+0700 (Western Indonesia Time)
+</div>
+</div>
+<script src="..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\sorter.js"></script>
+</body>
+</html>

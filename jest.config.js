@@ -1,9 +1,27 @@
 module.exports = {
+  cache: false,
+  collectCoverage: true,
+  collectCoverageFrom: [
+    'src/store/*.js',
+    'src/components/*.vue',
+    'src/components/**/*.vue',
+    'src/util/*.vue',
+    'src/views/*.vue',
+    'src/views/**/*.vue'
+  ],
+  coverageDirectory: 'tests/coverage',
+  coverageReporters: [
+    'lcov',
+    'text'
+  ],
   moduleFileExtensions: [
     'js',
     'jsx',
     'json',
     'vue'
+  ],
+  snapshotSerializers: [
+    'jest-serializer-vue'
   ],
   transform: {
     '^.+\\.vue$': 'vue-jest',
@@ -16,9 +34,6 @@ module.exports = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1'
   },
-  snapshotSerializers: [
-    'jest-serializer-vue'
-  ],
   testMatch: [
     '**/tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)'
   ],

@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for components/modal/AddTask.vue</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\index.html">All files</a> / <a href="index.html">components/modal</a> AddTask.vue
+    </h1>
+    <div class='clearfix'>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import axios from 'axios'</span>
+<span class="cstat-no" title="statement not covered" >import Cookie from 'vue-cookie'</span>
+<span class="cstat-no" title="statement not covered" >import { mapGetters, mapActions } from 'vuex'</span>
+&nbsp;
+export default {
+  name: 'add-task',
+  data () {
+<span class="cstat-no" title="statement not covered" >    return {</span>
+      show: false,
+      comment: '',
+      countImage: 0,
+      id: '',
+      name: '',
+      color: '',
+      image: [],
+      imageName: [],
+      taskTimeLeft: 0,
+      description: '',
+      isAddLabel: false,
+      showAddLabel: false,
+      projectCardTitle: '',
+      createLabelStatus: false,
+      selectedColor: null,
+      editLabelStatus: false,
+      labelNew: '',
+      editLabelName: '',
+      selectedColorEdit: '',
+      editLabelId: '',
+      colorList: [
+        '#61BD4F',
+        '#F2D600',
+        '#FF9F1A',
+        '#EB5A46',
+        '#C377E0',
+        '#0079BF',
+        '#00C2E0',
+        '#51E898',
+        '#FF78CB',
+        '#344563',
+        '#B3BAC5'
+      ]
+    }
+  },
+  props: {
+    kanbanId: {
+      type: String,
+      default: ''
+    },
+    taskId: {
+      type: String,
+      default: ''
+    },
+    lengthSection: {
+      type: Number,
+      default: 0
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'getResponse',
+      'labelList'
+    ]),
+    labelForm () {
+<span class="cstat-no" title="statement not covered" >      return this.labelList.data || []</span>
+    },
+    labelFormData () {
+<span class="cstat-no" title="statement not covered" >      return this.labelForm.labelForm || []</span>
+    }
+  },
+  methods: {
+    ...mapActions([
+      'postTaskList',
+      'getLabelListData',
+      'postNewLabel',
+      'editTheLabel'
+    ]),
+    showLabel () {
+<span class="cstat-no" title="statement not covered" >      this.showAddLabel = true</span>
+<span class="cstat-no" title="statement not covered" >      this.isAddLabel = true</span>
+    },
+    hideLabel () {
+<span class="cstat-no" title="statement not covered" >      this.showAddLabel = false</span>
+<span class="cstat-no" title="statement not covered" >      this.isAddLabel = false</span>
+    },
+    closeAll () {
+<span class="cstat-no" title="statement not covered" >      this.showAddLabel = false</span>
+<span class="cstat-no" title="statement not covered" >      this.isAddLabel = false</span>
+<span class="cstat-no" title="statement not covered" >      this.show = true</span>
+    },
+    getLabel () {
+<span class="cstat-no" title="statement not covered" >      this.show = false</span>
+<span class="cstat-no" title="statement not covered" >      this.showLabel()</span>
+<span class="cstat-no" title="statement not covered" >      this.getLabelListData({</span>
+        data: {
+          projectId: this.$route.params.projectId,
+          userId: Cookie.get('dataId')
+        }
+      })
+    },
+    backLabel () {
+<span class="cstat-no" title="statement not covered" >      this.createLabelStatus = !this.createLabelStatus</span>
+<span class="cstat-no" title="statement not covered" >      this.showAddLabel = !this.showAddLabel</span>
+<span class="cstat-no" title="statement not covered" >      this.getLabelListData({</span>
+        data: {
+          projectId: this.$route.params.projectId,
+          userId: Cookie.get('dataId')
+        }
+      })
+    },
+    backEditLabel () {
+<span class="cstat-no" title="statement not covered" >      this.editLabelStatus = false</span>
+<span class="cstat-no" title="statement not covered" >      this.showAddLabel = true</span>
+<span class="cstat-no" title="statement not covered" >      this.getLabelListData({</span>
+        data: {
+          projectId: this.$route.params.projectId,
+          userId: Cookie.get('dataId')
+        }
+      })
+    },
+    createLabel () {
+<span class="cstat-no" title="statement not covered" >      this.showAddLabel = !this.showAddLabel</span>
+<span class="cstat-no" title="statement not covered" >      this.createLabelStatus = !this.createLabelStatus</span>
+    },
+    createEditLabel (id, name, color) {
+<span class="cstat-no" title="statement not covered" >      this.editLabelId = id</span>
+<span class="cstat-no" title="statement not covered" >      this.editLabelName = name</span>
+<span class="cstat-no" title="statement not covered" >      this.selectedColorEdit = color</span>
+<span class="cstat-no" title="statement not covered" >      this.show = false</span>
+<span class="cstat-no" title="statement not covered" >      this.editLabelStatus = true</span>
+    },
+    addLabel () {
+<span class="cstat-no" title="statement not covered" >      this.postNewLabel({</span>
+        data: {
+          labelColor: this.selectedColor,
+          labelName: this.labelNew,
+          projectId: this.$route.params.projectId,
+          userId: Cookie.get('dataId')
+        }
+      })
+<span class="cstat-no" title="statement not covered" >      this.backLabel()</span>
+    },
+    editLabel () {
+<span class="cstat-no" title="statement not covered" >      this.editTheLabel({</span>
+        data: {
+          labelId: this.editLabelId,
+          labelColor: this.selectedColorEdit,
+          labelName: this.editLabelName,
+          projectId: this.$route.params.projectId,
+          userId: Cookie.get('dataId')
+        }
+      })
+<span class="cstat-no" title="statement not covered" >      this.backEditLabel()</span>
+    },
+    selectLabel (id, name, color) {
+<span class="cstat-no" title="statement not covered" >      this.id = id</span>
+<span class="cstat-no" title="statement not covered" >      this.name = name</span>
+<span class="cstat-no" title="statement not covered" >      this.color = color</span>
+<span class="cstat-no" title="statement not covered" >      this.show = true</span>
+<span class="cstat-no" title="statement not covered" >      this.hideLabel()</span>
+    },
+    addTaskList () {
+<span class="cstat-no" title="statement not covered" >      const formData = new FormData()</span>
+<span class="cstat-no" title="statement not covered" >      const masterData = {</span>
+        userId: Cookie.get('dataId'),
+        kanbanId: this.kanbanId,
+        projectId: this.$route.params.projectId,
+        taskList: {
+          assignTo: {},
+          imageList: [],
+          description: this.description,
+          section: this.lengthSection,
+          tagId: this.id,
+          taskEstimatedTime: this.taskTimeLeft,
+          taskTimeLeft: this.taskTimeLeft,
+          title: this.projectCardTitle
+        }
+      }
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >      this.image.forEach((data) =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        formData.append('images', data.data)</span>
+      })
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      formData.append('metaData', JSON.stringify(masterData))</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      axios.post(`/api/taskList/add`, formData,</span>
+<span class="fstat-no" title="function not covered" >        {</span>
+          headers:
+            {
+              Authorization: `Bearer ${Cookie.get('dataToken')}`
+            }
+        })
+        .then(() =&gt; {
+<span class="cstat-no" title="statement not covered" >          this.$emit('added')</span>
+<span class="cstat-no" title="statement not covered" >          this.show = false</span>
+        })
+    },
+    onFileChange (e) {
+<span class="cstat-no" title="statement not covered" >      if (</span>
+        e.target.files[0].type === 'image/png' ||
+        e.target.files[0].type === 'image/jpeg' ||
+        e.target.files[0].type === 'image/jpg'
+      ) {
+<span class="cstat-no" title="statement not covered" >        this.imageName.push(e.target.files[0].name)</span>
+<span class="cstat-no" title="statement not covered" >        this.image.push({</span>
+          data: e.target.files[0],
+          name: e.target.files[0].name
+        })
+      }
+<span class="cstat-no" title="statement not covered" >      this.createImage(this.image[this.image.length - 1].data, e.target.files[0])</span>
+    },
+    createImage (item, file) {
+<span class="cstat-no" title="statement not covered" >      var reader = new FileReader()</span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >      reader.onload = (e) =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        item.image = e.target.result</span>
+      }
+<span class="cstat-no" title="statement not covered" >      reader.readAsDataURL(file)</span>
+<span class="cstat-no" title="statement not covered" >      console.log(this.image)</span>
+    },
+    remove (idx) {
+<span class="cstat-no" title="statement not covered" >      this.image.splice(idx, 1)</span>
+<span class="cstat-no" title="statement not covered" >      this.imageName.splice(idx, 1)</span>
+    }
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Feb 15 2021 01:10:23 GMT+0700 (Western Indonesia Time)
+</div>
+</div>
+<script src="..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\sorter.js"></script>
+</body>
+</html>

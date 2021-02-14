@@ -1,9 +1,9 @@
 <template>
   <div class="header shadow-sm px-3 d-flex align-items-center">
-    <div class="header__logo"
-    @click="back">
+    <div class="header__logo">
       <font-awesome-icon
         icon="chevron-left"
+        @click="back"
       />
     </div>
   </div>
@@ -14,7 +14,7 @@ export default {
   name: 'plain-header',
   methods: {
     back () {
-      window.history.back()
+      this.$router.push('/home')
     }
   }
 }

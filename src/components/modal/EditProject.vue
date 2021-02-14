@@ -5,6 +5,7 @@
     title="Edit Project"
     class="edit-project-modal"
     hide-footer
+    v-model="show"
   >
     <label
       for="project-name"
@@ -44,9 +45,9 @@
     <div class="modal-section">
       <button
         class="modal-section__button"
-        @click="(projectName && projectDescription) && createProject()"
+        @click="(projectName && projectDescription) && editProject()"
       >
-        Create Project
+        Edit Project
       </button>
     </div>
   </b-modal>

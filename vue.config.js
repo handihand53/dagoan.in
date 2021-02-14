@@ -12,17 +12,24 @@ module.exports = {
   // proxy table
   devServer: {
     proxy: {
-      '/v3/*': {
-        target: 'https://run.mocky.io/',
-        changeOrigin: true,
-        secure: false
-      },
       '^/api/': {
-        target: 'http://dummy.restapiexample.com/',
+        target: 'http://localhost:8081/dagoan.in/',
         changeOrigin: true,
         pathRewrite: { '^/api/': '/api/' },
         logLevel: 'debug'
       }
+      // '/v3/*': {
+      //   target: 'https://run.mocky.io/',
+      //   changeOrigin: true,
+      //   secure: false,
+      //   logLevel: 'debug'
+      // },
+      // '^/api/': {
+      //   target: 'http://dummy.restapiexample.com/',
+      //   changeOrigin: true,
+      //   pathRewrite: { '^/api/': '/api/' },
+      //   logLevel: 'debug'
+      // }
     }
   }
 }

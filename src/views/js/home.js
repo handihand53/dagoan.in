@@ -1,6 +1,7 @@
 import { mapGetters, mapActions } from 'vuex'
 import MainHeader from '@/components/MainHeader.vue'
 import HomeTab from '@/components/home/HomeTab.vue'
+import Cookie from 'vue-cookie'
 
 export default {
   name: 'home',
@@ -15,17 +16,22 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'currentUser'
+      'getUser'
     ])
   },
   methods: {
-    ...mapActions(['getCurrentUser'])
+    ...mapActions([
+      'getUserDetail'
+    ]),
+    getData () {
+      this.getUserDetail({
+        data: {
+          userId: Cookie.get('dataId')
+        }
+      })
+    }
   },
   created () {
-    // axios.get(`https://swapi.dev/api/`)
-    //   .then((res) => {
-    //     console.log(res)
-    //   })
-    this.getCurrentUser({ number: 1 })
+    this.getData()
   }
 }

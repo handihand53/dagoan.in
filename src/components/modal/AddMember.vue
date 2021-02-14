@@ -8,14 +8,20 @@
       hide-footer
     >
     <div class="user">
-      Username
+      Email
     </div>
       <vue-bootstrap-typeahead
         v-model="queryUsername"
-        placeholder="Username"
-        :data="['Canada', 'USA', 'Mexico']"
+        placeholder="Email"
+        :data="[]"
         class="input"
       />
+      <div
+        class="unknown"
+        v-if="detected"
+      >
+        Email tidak terdaftar
+      </div>
       <div class="modal-section d-flex justify-content-center">
         <button
           class="modal-section__button modal-section__button-add"
@@ -47,5 +53,11 @@
   font-size: 13px;
   font-weight: 600;
   margin-bottom: 8px;
+}
+
+.unknown{
+  color: red;
+  margin-top: 8px;
+  font-size: 13px;
 }
 </style>

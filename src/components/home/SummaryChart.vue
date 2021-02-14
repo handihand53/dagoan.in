@@ -1,16 +1,21 @@
 <template>
   <div class="main-detail">
     <DoughnutChart
-     class="shadow-sm p-2 mb-3 chart-color"/>
-     <!-- report detail -->
-    <div class="detailed p-2">
+      :dataTable="kanbanSort"
+      class="shadow-sm p-2 mb-3 chart-color"
+    />
+    <div
+      class="detailed p-2"
+      v-for="kanban in kanbanSort"
+      :key="kanban.kanbanId"
+    >
       <div class="shadow-sm">
         <div class="detailed__title">
-          In Progress
+          {{`${kanban.name} (${kanban.taskLists.length})`}}
         </div>
         <div class="detailed__content">
           <b-table responsive
-            :items="items"
+            :items="getItem(kanban.taskLists)"
             :fields="fields"
             small
             primary-key="a"
@@ -22,7 +27,7 @@
                 class="tag"
                 :style="`background-color: ${row.item.tagColor}`"
               >
-                Release
+                {{row.item.tagName}}
               </div>
             </template>
 
@@ -31,7 +36,7 @@
       </div>
     </div>
 
-    <div class="detailed p-2">
+    <!-- <div class="detailed p-2">
       <div class="shadow-sm">
         <div class="detailed__title">
           To Do
@@ -85,7 +90,7 @@
           </b-table>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 

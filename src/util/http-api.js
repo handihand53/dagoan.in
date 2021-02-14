@@ -1,6 +1,9 @@
 import axios from 'axios'
 import config from '@/config'
 import Vue from 'vue'
+import Cookie from 'vue-cookie'
+
+axios.defaults.headers.common['Authorization'] = 'Bearer ' + Cookie.get('dataToken')
 
 axios.interceptors.response.use(
   // do nothing
@@ -50,7 +53,11 @@ export default {
   },
 
   postDataViaApi (path, cb, data, errorHandler, headerParams = {}) {
-    const headerObject = {}
+    const headerObject = {
+      'Cache-Control': 'no-cache',
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json'
+    }
     axios.post(config.getApiPath(path), data, {
       headers: { ...headerObject, ...headerParams }
     })
@@ -58,8 +65,8 @@ export default {
       .catch(dataAdapter(errorHandler))
   },
 
-  deleteDataViaApi (path, cb, errorHandler) {
-    axios.delete(config.getApiPath(path))
+  deleteDataViaApi (path, cb, data, errorHandler) {
+    axios.delete(config.getApiPath(path), data)
       .then(dataAdapter(cb))
       .catch(dataAdapter(errorHandler))
   },

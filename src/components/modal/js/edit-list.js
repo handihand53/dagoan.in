@@ -1,13 +1,35 @@
+import { mapActions } from 'vuex'
+import Cookie from 'vue-cookie'
+
 export default {
   name: 'edit-list',
   data () {
     return {
-      projectCardTitle: ''
+      projectCardTitle: '',
+      show: false
+    }
+  },
+  props: {
+    kanbanId: {
+      type: String,
+      default: ''
     }
   },
   methods: {
-    editCardProject () {
-      console.log('edited')
+    ...mapActions([
+      'updateKanbanName'
+    ]),
+    async editCardProject () {
+      await this.updateKanbanName({
+        data: {
+          kanbanId: this.kanbanId,
+          kanbanName: this.projectCardTitle,
+          projectId: this.$route.params.projectId,
+          userId: Cookie.get('dataId')
+        }
+      })
+      this.show = false
+      this.$emit('edited-kanban')
     }
   }
 }

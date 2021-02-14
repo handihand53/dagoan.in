@@ -4,6 +4,7 @@
     centered
     title="Edit Project Card"
     class="edit-project-modal"
+    v-model="show"
     hide-footer
   >
     <label

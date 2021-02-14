@@ -9,13 +9,13 @@
     >
       <div>
         Apakah anda yakin ingin menghapus
-        <span class="name-delete">{{ name }}</span>
+        <span class="name-delete">{{ username }}</span>
         dari team ?
       </div>
       <div class="modal-section d-flex justify-content-center">
         <button
           class="modal-section__button modal-section__button-acc"
-          @click="deleteMember()"
+          @click="deleteMem()"
         >
           Hapus
         </button>

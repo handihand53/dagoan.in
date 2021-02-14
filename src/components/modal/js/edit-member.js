@@ -1,10 +1,9 @@
+import { mapActions } from 'vuex'
+
 export default {
   name: 'edit-member',
   props: {
-    name: {
-      type: String,
-      default: ''
-    }
+    member: String
   },
   data () {
     return {
@@ -13,9 +12,22 @@ export default {
     }
   },
   computed: {
+    username () {
+      return this.member.userName || {}
+    }
   },
   methods: {
-    deleteMember () {
+    ...mapActions([
+      'deleteMember'
+    ]),
+    deleteMem () {
+      this.deleteMember({
+        data: {
+          memberId: this.member.memberId,
+          projectId: this.$route.params.projectId
+        },
+        success: this.$emit('editted')
+      })
       let loader = this.$loading.show({
         container: this.fullPage ? null : this.$refs.formContainer,
         canCancel: false,

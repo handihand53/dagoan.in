@@ -1,7 +1,7 @@
 <template>
   <div class="navigation shadow">
     <div class="d-flex" id="nav">
-      <router-link to="/main" class="navigation__section">
+      <router-link :to="'/main/' + paramId" class="navigation__section">
         <font-awesome-icon
           class="navigation-icon"
           icon="th-large"
@@ -10,7 +10,7 @@
           Dashboard
         </div>
       </router-link>
-      <router-link to="/reports" class="navigation__section">
+      <router-link :to="'/reports/' + paramId" class="navigation__section">
         <font-awesome-icon
           class="navigation-icon"
           icon="chart-bar"
@@ -19,7 +19,7 @@
           Reports
         </div>
       </router-link>
-      <router-link to="/chat" class="navigation__section">
+      <router-link :to="'/chat/' + paramId" class="navigation__section">
         <font-awesome-icon
           class="navigation-icon"
           icon="comments"
@@ -28,7 +28,7 @@
           Chat
         </div>
       </router-link>
-      <router-link to="/team" class="navigation__section">
+      <router-link :to="'/team/' + paramId" class="navigation__section">
         <font-awesome-icon
           class="navigation-icon"
           icon="users"
@@ -43,7 +43,12 @@
 
 <script>
 export default {
-  name: 'nav-bar'
+  name: 'nav-bar',
+  data () {
+    return {
+      paramId: this.$route.params.projectId
+    }
+  }
 }
 </script>
 

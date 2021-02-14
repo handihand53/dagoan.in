@@ -7,20 +7,22 @@ export default {
   },
   data () {
     return {
-      name: 'Handi',
       onGoing: true,
-      finish: false
+      finish: false,
+      state: 0
     }
   },
   methods: {
     onGoingSection () {
       this.onGoing = true
       this.finish = false
+      this.state = 0
       this.loading()
     },
     finishSection () {
       this.finish = true
       this.onGoing = false
+      this.state = 1
       this.loading()
     },
     loading () {

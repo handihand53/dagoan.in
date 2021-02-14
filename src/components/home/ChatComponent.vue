@@ -1,11 +1,12 @@
 <template>
   <div>
     <beautiful-chat
+      class="custom-class"
       :alwaysScrollToBottom="alwaysScrollToBottom"
       :close="closeChat"
       :colors="colors"
       :isOpen="isChatOpen"
-      :messageList="messageList"
+      :messageList="msg"
       :messageStyling="messageStyling"
       :newMessagesCount="newMessagesCount"
       :onMessageWasSent="onMessageWasSent"
@@ -13,19 +14,35 @@
       :participants="participants"
       :showCloseButton="true"
       :showLauncher="true"
-      :showEmoji="true"
-      :showFile="true"
+      :showEmoji="false"
+      :showFile="false"
       :showTypingIndicator="showTypingIndicator"
       :showEdition="true"
-      :showDeletion="true"
-      :showConfirmationDeletion="true"
+      :showDeletion="false"
+      :showConfirmationDeletion="false"
       :confirmationDeletionMessage="'Are you sure? (you can customize this message)'"
       :titleImageUrl="titleImageUrl"
       @onType="handleOnType"
       @edit="editMessage"
       @remove="removeMessage"
     >
-      <template v-slot:text-message-toolbox="scopedProps">
+    <template v-slot:text-message-body="{ message }">
+      <small style="font-weight: bold">
+        {{message.data.meta}}
+      </small>
+      <br>
+      {{message.data.text}}
+    </template>
+    <template v-slot:user-avatar="{ message, user }">
+      <div
+        style="border-radius:50%; color: white; font-size: 15px; line-height:25px; text-align:center;background: #4e8cff; width: 25px !important;
+        padding-top: 2px; height: 25px !important; min-width: 30px;min-height: 30px;margin: 5px; font-weight:bold"
+        v-if="message.type === 'text' && user && user.name"
+      >
+        {{user.name.toUpperCase()[0]}}
+      </div>
+    </template>
+      <!-- <template v-slot:text-message-toolbox="scopedProps">
         <button v-if="!scopedProps.me && scopedProps.message.type==='text'" @click.prevent="like(scopedProps.message.id)">
           👍
         </button>
@@ -37,35 +54,29 @@
           <template v-if="scopedProps.message.isEdited">✎</template>
           <template v-if="scopedProps.message.liked">👍</template>
         </p>
-      </template>
-      <template v-slot:system-message-body="{ message }">
+      </template> -->
+      <!-- <template v-slot:system-message-body="{ message }">
         [System]: {{message.text}}
-      </template>
+      </template> -->
     </beautiful-chat>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import Cookie from 'vue-cookie'
 
 export default {
   name: 'app',
   data () {
     return {
-      room: this.$route.params.id,
+      fetched: false,
+      room: this.$route.params.projectId,
       currentId: 21,
-      participants: [{
-        id: 'mattmezza',
-        name: 'Matteo',
-        imageUrl: 'https://avatars3.githubusercontent.com/u/1915989?s=230&v=4'
-      },
-      {
-        id: 'support',
-        name: 'Support',
-        imageUrl: 'https://avatars3.githubusercontent.com/u/37018832?s=200&v=4'
-      }],
+      participants: [],
       titleImageUrl:
         'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
+      msg: [],
       messageList: [
         { type: 'text', author: `me`, id: 0, data: { text: `Why don't they have salsa on the table?` } },
         { type: 'text', author: `mattmezza`, id: 1, data: { text: `What do you need salsa for?` } },
@@ -84,7 +95,7 @@ export default {
         { type: 'system', id: 13, data: { text: 'You have been transferred to another operator', meta: '04-07-2018 15:57' } },
         { type: 'file', author: `support`, id: 14, data: { text: `No forget the story. `, file: { name: 'awesome', url: 'https://media.giphy.com/media/dkGhBWE3SyzXW/giphy.gif' } } },
         { type: 'file', author: `me`, id: 15, data: { text: `What about this one instead?? `, file: { url: 'http://www.quickmeme.com/img/2d/2d95cc80f9a2a2578a8f632eebecddcc1c12e5b08ab85f81a5d401670d5f36c1.jpg' }, meta: '✓✓ Read' } },
-        { type: 'text', author: `support`, id: 16, data: { text: `You've got to have a story. You've got to have a story. You've got to have a story. You've got to have a story. You've got to have a story. You've got to have a story. `, meta: 'Senin 23 sept' } },
+        { type: 'text', author: `support`, id: 16, data: { text: `You've got to have a story. You've got to have a story. You've got to have a story. You've got to have a story. You've got to have a story. You've got to have a story. `, meta: 'Handi Hermawan' } },
         { type: 'emoji', author: `me`, id: 17, data: { emoji: `😋` } },
         { type: 'text', author: `me`, id: 18, data: { text: `Do you read me...`, meta: '✓✓ Read' } },
         { type: 'text', author: `me`, id: 19, data: { text: `...or not?`, meta: 'Senin 24 sept' } },
@@ -92,7 +103,8 @@ export default {
         { type: 'text', author: `support`, id: 21, data: { text: `What about suggestions?` }, suggestions: ['Looks good!', "It's OK.", 'Uhh.. Do I really have to say something?', "This suggestion is way too long for css purpose. Let's make it long... Longer, and more and more.. Never ending."] }
       ],
       newMessagesCount: 5,
-      isChatOpen: false,
+      // isChatOpen: false,
+      isChatOpen: true,
       showTypingIndicator: '',
       colors: null,
       availableColors:
@@ -216,13 +228,31 @@ export default {
       userIsTyping: false
     }
   },
-  created () {
+  async created () {
     this.setColor('blue')
+    await this.getAllMessage()
+    await this.getUserData()
   },
   methods: {
     ...mapActions([
-      'getConnectedClients'
+      'getConnectedClients',
+      'getProjectData',
+      'getUserDetail',
+      'postChat',
+      'getProjectOwner'
     ]),
+    getUserData () {
+      this.getUserDetail({
+        data: {
+          userId: Cookie.get('dataId')
+        }
+      })
+    },
+    getAllMessage () {
+      this.getProjectData({
+        data: this.$route.params.projectId
+      })
+    },
     sendMessage (text) {
       if (text.length > 0) {
         this.newMessagesCount = this.isChatOpen
@@ -242,22 +272,35 @@ export default {
           ? this.participants[this.participants.length - 1].id
           : ''
     },
-    onMessageWasSent (message) {
-      const rooms = {
-        roomId: this.$route.params.id,
-        name: this.$route.params.name,
-        author: this.$route.params.name,
-        msg: message.data.text
-      }
-      this.$socket.emit('chat-room', rooms)
+    async onMessageWasSent (message) {
+      await this.postChat({
+        data: {
+          projectId: this.$route.params.projectId,
+          section: 1,
+          userId: this.getUser.userId,
+          text: message.data.text,
+          userName: this.getUser.userName
+        }
+      })
       this.messageList = [...this.messageList, Object.assign({}, message, { id: Math.random() })]
+      setTimeout(() => {
+        this.getAllMessage()
+        const rooms = {
+          roomId: this.$route.params.projectId,
+          name: this.$route.params.name,
+          author: this.$route.params.name,
+          msg: message.data.text
+        }
+        this.$socket.emit('chat-room', rooms)
+      }, 100)
     },
     openChat () {
       this.isChatOpen = true
       this.newMessagesCount = 0
     },
     closeChat () {
-      this.isChatOpen = false
+      this.isChatOpen = true
+      this.$router.push(`/main/${this.$route.params.projectId}`)
     },
     setColor (color) {
       this.colors = this.availableColors[color]
@@ -294,7 +337,7 @@ export default {
       this.$set(this.messageList, m, msg)
     },
     getUsers () {
-      // this.participants = []
+      this.participants = []
       this.clientList.forEach((dataClient) => {
         if (this.$socket.id !== dataClient) {
           this.participants.push(
@@ -305,13 +348,15 @@ export default {
             }
           )
         }
-        console.log(this.participants)
       })
     }
   },
   computed: {
     ...mapGetters([
-      'clientList'
+      'clientList',
+      'projectsData',
+      'getUser',
+      'projectOwner'
     ]),
     linkColor () {
       return this.chosenColor === 'dark'
@@ -324,141 +369,68 @@ export default {
   },
   mounted () {
     this.sockets.subscribe(this.room, data => {
-      this.messageList.push(
-        { type: 'text', author: data.author, id: this.currentId, data: { text: data.msg } }
-      )
-      this.currentId += 1
+      this.getAllMessage()
     })
     this.sockets.subscribe('user-connected', this.getConnectedClients)
     this.sockets.subscribe('user-disconnected', this.getConnectedClients)
     this.getConnectedClients()
-    this.getUsers()
-    /* eslint no-return-assign: "error" */
-    // this.messageList.forEach(x => x.liked = false)
+  },
+  watch: {
+    projectsData: {
+      immediate: true,
+      handler: function (data) {
+        const x = this.projectsData.data.projects.members
+        this.msg = []
+        if (!this.fetched) {
+          this.fetched = true
+          this.participants = []
+          this.getProjectOwner({
+            data: {
+              userId: this.projectsData.data.userId
+            },
+            success: () => {
+              this.participants.push({
+                id: this.projectOwner.userName,
+                name: this.projectOwner.userName,
+                imageUrl: 'https://avatars3.githubusercontent.com/u/1915989?s=230&v=4'
+              })
+            }
+          })
+          x.forEach((mem) => {
+            this.participants.push({
+              id: mem.userName,
+              name: mem.userName,
+              imageUrl: 'https://avatars3.githubusercontent.com/u/1915989?s=230&v=4'
+            })
+          })
+        }
+        data.data.chatForm.forEach((chat) => {
+          let auth = ''
+          if (chat.userId === Cookie.get('dataId')) {
+            auth = 'me'
+          } else {
+            auth = chat.userName
+          }
+          this.msg.push(
+            {
+              type: 'text',
+              author: auth,
+              id: chat.section,
+              data: {
+                text: chat.text,
+                meta: auth
+              }
+            }
+          )
+        })
+      }
+    }
   }
 }
-// import { mapGetters, mapActions } from 'vuex'
-
-// export default {
-//   name: 'app',
-//   data () {
-//     return {
-//       room: {
-//         roomId: this.$route.params.id,
-//         name: 'asc',
-//         msg: 'testing123',
-//         status: Math.random() % 2
-//       },
-//       participants: [], // the list of all the participant of the conversation. `name` is the user name, `id` is used to establish the author of a message, `imageUrl` is supposed to be the user avatar.
-//       titleImageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
-//       messageList: [
-//         { type: 'text', author: `me`, data: { text: `Say yes!` } },
-//         { type: 'text', author: `user1`, data: { text: `No.` } }
-//       ], // the list of the messages to show, can be paginated and adjusted dynamically
-//       newMessagesCount: 0,
-//       isChatOpen: true, // to determine whether the chat window should be open or closed
-//       showTypingIndicator: '', // when set to a value matching the participant.id it shows the typing indicator for the specific user
-//       colors: {
-//         header: {
-//           bg: '#4e8cff',
-//           text: '#ffffff'
-//         },
-//         launcher: {
-//           bg: '#4e8cff'
-//         },
-//         messageList: {
-//           bg: '#ffffff'
-//         },
-//         sentMessage: {
-//           bg: '#4e8cff',
-//           text: '#ffffff'
-//         },
-//         receivedMessage: {
-//           bg: '#eaeaea',
-//           text: '#222222'
-//         },
-//         userInput: {
-//           bg: '#f4f7f9',
-//           text: '#565867'
-//         }
-//       }, // specifies the color scheme for the component
-//       alwaysScrollToBottom: false, // when set to true always scrolls the chat to the bottom when new events are in (new message, user starts typing...)
-//       messageStyling: true // enables *bold* /emph/ _underline_ and such (more info at github.com/mattezza/msgdown)
-//     }
-//   },
-//   computed: {
-//     ...mapGetters([
-//       'clientList'
-//     ])
-//   },
-//   methods: {
-//     ...mapActions([
-//       'getConnectedClients'
-//     ]),
-//     sendMessage (text) {
-//       if (text.length > 0) {
-//         this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1
-//         this.onMessageWasSent({ author: 'support', type: 'text', data: { text } })
-//       }
-//     },
-//     onMessageWasSent (message) {
-//       const rooms = {
-//         roomId: this.$route.params.id,
-//         name: this.$route.params.name,
-//         msg: message.data.text
-//       }
-//       this.$socket.emit('chat-room', rooms)
-//       // called when the user sends a message
-//       this.messageList = [ ...this.messageList, message ]
-//     },
-//     openChat () {
-//       // called when the user clicks on the fab button to open the chat
-//       this.isChatOpen = true
-//       this.newMessagesCount = 0
-//     },
-//     closeChat () {
-//       // called when the user clicks on the botton to close the chat
-//       this.isChatOpen = false
-//     },
-//     handleScrollToTop () {
-//       // called when the user scrolls message list to top
-//       // leverage pagination for loading another page of messages
-//     },
-//     handleOnType () {
-//       console.log('Emit typing event')
-//     },
-//     editMessage (message) {
-//       const m = this.messageList.find(m => m.id === message.id)
-//       m.isEdited = true
-//       m.data.text = message.data.text
-//     },
-//     getUsers () {
-//       // this.participants = []
-//       this.clientList.forEach((dataClient) => {
-//         if (this.$socket.id !== dataClient) {
-//           this.participants.push(
-//             {
-//               id: dataClient,
-//               name: this.$route.params.name,
-//               imageUrl: 'https://avatars3.githubusercontent.com/u/1915989?s=230&v=4'
-//             }
-//           )
-//         }
-//         console.log(this.participants)
-//       })
-//     }
-//   },
-//   mounted: function () {
-//     console.log(this.$route.params.id)
-//     this.sockets.subscribe(this.room.roomId, data => {
-//       this.messageList.push(
-//         { type: 'text', author: data.name, data: { text: data.msg } }
-//       )
-//     })
-//     this.sockets.subscribe('user-connected', this.getConnectedClients)
-//     this.sockets.subscribe('user-disconnected', this.getConnectedClients)
-//     this.getConnectedClients()
-//     this.getUsers()
-//   }
-// }
 </script>
+
+<style scoped>
+/deep/ .sc-message {
+  width: 95%!important;
+}
+</style>

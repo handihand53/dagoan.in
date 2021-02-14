@@ -58,7 +58,9 @@
           </button>
         </div>
         <div class="mt-2 text-center hint-daftar">
-          Belum punya akun ? daftar <a href="/signup" class="daftar">disini</a>
+          Belum punya akun ?
+          <br>
+          Daftar <a href="/signup" class="daftar">disini</a>
         </div>
       </div>
     </div>

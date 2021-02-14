@@ -16,7 +16,8 @@
         Finish
       </div>
     </div>
-    <HomeContentCard/>
+    <HomeContentCard
+    :status="state"/>
   </div>
 </template>
 

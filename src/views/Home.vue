@@ -2,8 +2,7 @@
   <div class="bg">
     <MainHeader/>
     <div class="main-section">
-      Selamat datang, {{ name }}
-      {{ currentUser }}
+      Selamat datang, {{ getUser.userName }}
     </div>
     <HomeTab/>
   </div>

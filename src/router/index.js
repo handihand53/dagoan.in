@@ -24,17 +24,17 @@ export default new Router({
       component: () => import(/* webpackChunkName: "p-home" */ '@/views/Home.vue')
     },
     {
-      path: '/main',
+      path: '/main/:projectId',
       name: 'main',
       component: () => import(/* webpackChunkName: "p-home" */ '@/views/Main.vue')
     },
     {
-      path: '/reports',
+      path: '/reports/:projectId',
       name: 'reports',
       component: () => import(/* webpackChunkName: "p-reports" */ '@/views/Reports.vue')
     },
     {
-      path: '/chat',
+      path: '/chat/:projectId',
       name: 'chat',
       component: () => import(/* webpackChunkName: "p-chat" */ '@/views/Chat.vue')
     },
@@ -44,7 +44,7 @@ export default new Router({
       component: () => import(/* webpackChunkName: "p-chat" */ '@/views/Chat.vue')
     },
     {
-      path: '/team',
+      path: '/team/:projectId',
       name: 'team',
       component: () => import(/* webpackChunkName: "p-chat" */ '@/views/Team.vue')
     },
@@ -55,6 +55,14 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue')
+    },
+    {
+      path: '*',
+      name: 'Not Found',
+      component: () => import(/* webpackChunkName: "p-not-found" */ '@/views/About.vue'),
+      meta: {
+        title: 'Halaman tidak ditemukan'
+      }
     }
   ]
 })

@@ -1,180 +1,210 @@
 <template>
-  <b-modal
-    id="detail-card"
-    centered
-    title="Add New Card"
-    class="add-project-modal"
-    hide-footer
-    hide-header
-  >
-    <div
-      for="project-name"
-      class="label-project-detailed mb-3"
+  <div>
+    <b-modal
+      v-if="labelListForm"
+      id="detail-card"
+      centered
+      title="Add New Card"
+      class="add-project-modal"
+      v-model="show"
+      hide-footer
+      hide-header
     >
-      <font-awesome-icon
-        icon="book"
-        class="logo-icon"
-      />
-      Create Design Mock Up
-    </div>
-    <div
-      for="project-name"
-      class="label-project-detailed mb-1"
-    >
-      <font-awesome-icon
-        icon="tag"
-        class="logo-icon"
-      />
-      Label Card
-    </div>
-    <div class="d-flex pl-3 mb-3 flex-wrap">
-      <div
-        class="label-color-detailed"
-        style="background-color: #D323BD"
-      >
-        Tips
-      </div>
-      <div
-        class="label-color-detailed"
-        style="background-color: #FFA000"
-      >
-        Front End
-      </div>
-      <div
-        class="label-color-detailed"
-        style="background-color: #344563"
-      >
-        UI/UX
-      </div>
-      <div
-        class="label-color-detailed"
-        style="background-color: #EB5A46"
-      >
-        Urgent
-      </div>
-      <div
-        class="label-color-detailed"
-        style="background-color: #61BD4F"
-      >
-        Retro
-      </div>
-      <div
-        class="label-color-detailed"
-        style="background-color: #00C2E0"
-      >
-        Future
-      </div>
-    </div>
-    <label
-      for="project-name"
-      class="label-project-detailed"
-    >
-      <font-awesome-icon
-        icon="stopwatch"
-        class="logo-icon"
-      />
-      03:00:00
-    </label>
-    <div
-      for="project-name"
-      class="label-project-detailed"
-    >
-      <font-awesome-icon
-        icon="list-alt"
-        class="logo-icon"
-      />
-      Description
-    </div>
-    <div class="label-desc-detailed mb-3">
-      Lorem Ipsum is simply dummy text of the printing and
-      typesetting industry. Lorem Ipsum has been the industry's
-      standard dummy text ever since the 1500s, when an unknown
-      printer took a galley of type and scrambled it to make a type
-      specimen book. It has survived not only five centuries
-    </div>
-    <div
-      for="project-name"
-      class="label-project-detailed"
-    >
-      <font-awesome-icon
-        icon="paperclip"
-        class="logo-icon"
-      />
-      Attachments
-    </div>
-    <div class="d-flex align-content-start flex-wrap">
-      <div class="m-1">
-        <expandable-image
-          class="img-attachments"
-          src="https://images.unsplash.com/photo-1550948537-130a1ce83314?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2552&q=80"
-          alt="dog"
-          title="dog"
-        ></expandable-image>
-      </div>
-      <div class="m-1">
-        <expandable-image
-          class="img-attachments"
-          src="https://www.vectortiles.com/wp-content/uploads/checkers-vector-tiles-02-300x300.jpg"
-          alt="dog"
-          title="dog"
-        ></expandable-image>
-      </div>
-    </div>
-    <div
-      for="project-name"
-      class="label-project-detailed mb-2 mt-4"
-    >
-      <font-awesome-icon
-        icon="comment-alt"
-        class="logo-icon"
-      />
-      Comment
-    </div>
-    <div class="d-flex justify-content-between">
-      <b-textarea
-        id="project-name"
-        class="input"
-        placeholder="Write a comment"
-        v-model="comment"
-      />
-      <div class="ml-2">
-        <b-button
-          variant="primary"
+      <div class="d-flex justify-content-between mb-2 border-bottom">
+        <label
+          class="label-project title-lab"
         >
-          <font-awesome-icon
-            icon="plus"
-            class="logo-icon-button"
-          />
-        </b-button>
+          Detail Project
+        </label>
+        <font-awesome-icon
+          icon="times"
+          class="logo-icon"
+          @click="reset()"
+        />
       </div>
-    </div>
-    <div>
-      <div class="d-flex mt-2 comment">
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="logo-comment">
-        <div class="comment-section-detailed">
-          <div class="comment-name">
-            David Beckham
+      <div
+        for="project-name"
+        class="label-project-detailed mb-3"
+      >
+        <font-awesome-icon
+          icon="book"
+          class="logo-icon"
+        />
+        {{ taskList.title }}
+      </div>
+      <div
+        for="project-name"
+        class="label-project-detailed mb-1"
+      >
+        <font-awesome-icon
+          icon="tag"
+          class="logo-icon"
+        />
+        Label Card
+      </div>
+      <div class="d-flex pl-3 mb-3 flex-wrap">
+        <div
+          class="label-color-detailed"
+          :style="'background-color:' + labelFilter(taskList.tagId).labelColor"
+        >
+          {{ labelFilter(taskList.tagId).labelName }}
+        </div>
+      </div>
+      <label
+        for="project-name"
+        class="label-project-detailed"
+      >
+        <font-awesome-icon
+          icon="stopwatch"
+          class="logo-icon"
+        />
+        Estimated time: {{getTime(taskList.taskEstimatedTime)}}
+      </label>
+      <br>
+      <label
+        for="project-name"
+        class="label-project-detailed"
+      >
+        <font-awesome-icon
+          icon="stopwatch"
+          class="logo-icon"
+        />
+        Time left: {{getTime(taskList.taskTimeLeft)}}
+      </label>
+      <div
+        for="project-name"
+        class="label-project-detailed"
+      >
+        <font-awesome-icon
+          icon="list-alt"
+          class="logo-icon"
+        />
+        Description
+      </div>
+      <div class="label-desc-detailed mb-3">
+        {{ taskList.description }}
+      </div>
+      <div
+        for="project-name"
+        class="label-project-detailed"
+      >
+        <font-awesome-icon
+          icon="paperclip"
+          class="logo-icon"
+        />
+        Attachments
+      </div>
+      <div class="over">
+        <div
+          class="m-1 d-inline-block"
+          v-for="image in taskList.imageList"
+          :key="image"
+        >
+          <expandable-image
+            class="img-attachments"
+            :src="getImage(image)"
+          ></expandable-image>
+        </div>
+      </div>
+      <div
+        for="project-name"
+        class="label-project-detailed mb-2 mt-4"
+      >
+        <font-awesome-icon
+          icon="comment-alt"
+          class="logo-icon"
+        />
+        Comment
+      </div>
+      <div class="d-flex justify-content-between">
+        <b-textarea
+          id="project-name"
+          class="input"
+          placeholder="Write a comment"
+          v-model="newComment"
+        />
+        <div class="ml-2">
+          <b-button
+            variant="primary"
+            @click="addComment()"
+          >
+            <font-awesome-icon
+              icon="plus"
+              class="logo-icon-button"
+            />
+          </b-button>
+        </div>
+      </div>
+      <div
+        v-if="!commentForm.length"
+        class="custom-no-comment"
+      >
+        No Comment here
+      </div>
+      <div v-else>
+        <div
+          class="d-flex mt-2"
+          :class="{'comment': idx + 1 != commentForm.length}"
+          v-for="(comment, idx) in commentForm"
+          :key="comment.commentId"
+        >
+          <div src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
+          class="logo-comment">
+          <div class="logo-nick">
+            {{ (comment.userName.substr(0,1)).toUpperCase() }}
           </div>
-          <div class="comment-content mt-1">
-            Tolong detail diperhatikan lagi, jika ada yg ditanyakan hubungi 0238123414124
+          </div>
+          <div class="comment-section-detailed">
+            <div class="comment-name d-flex justify-content-between">
+              <div class="name-max">
+                {{comment.userName}}
+              </div>
+              <div
+                v-if="ownerId === user"
+                class="owner"
+              >
+                Owner
+              </div>
+            </div>
+            <div class="comment-content mt-1">
+              {{comment.comment}}
+            </div>
+          <div
+            v-if="comment.userId === user"
+            class="d-flex"
+          >
+              <div class="edit"
+                v-b-modal.edit-comment
+                @click="setDataEdit(comment)"
+              >
+                <font-awesome-icon
+                  class="edit-icon"
+                  icon="pencil-alt"
+                />
+                Edit
+              </div>
+              <div class="delete"
+                @click="deleteCom(comment.commentId)"
+              >
+                <font-awesome-icon
+                  class="edit-icon"
+                  icon="trash-alt"
+                />
+                Delete
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="d-flex mt-2">
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt=""
-        class="logo-comment">
-        <div class="comment-section-detailed">
-          <div class="comment-name">
-            David Beckham
-          </div>
-          <div class="comment-content mt-1">
-            Tolong detail diperhatikan lagi, jika ada yg ditanyakan hubungi 0238123414124
-          </div>
-        </div>
-      </div>
-    </div>
-  </b-modal>
+    </b-modal>
+    <update-comment
+      :dataComment="dataComment"
+      :kanbanId="kanbanId"
+      :taskId="taskId"
+      v-on:editted="getDetail"
+      @click="getDetail()"
+    />
+  </div>
 </template>
 
 <script src="./js/detail-card.js"></script>
@@ -183,6 +213,10 @@
 .label-desc-detailed{
   font-size: 13px;
   text-align: justify;
+  display: -webkit-box !important;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .label-project-detailed{
@@ -196,6 +230,17 @@
   font-size: 12px;
   color: white;
   padding: 2px 12px;
+}
+
+.logo-nick{
+  background: orange;
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  padding-top: 2px;
 }
 
 .list-title{
@@ -274,6 +319,7 @@
 .img-attachments{
   width: 100px;
   height: auto;
+  display: inline-block;
 }
 
 .logo-comment{
@@ -283,6 +329,7 @@
 }
 
 .comment-section-detailed{
+  width: 100%;
   line-height: 18px;
   margin-left: 8px;
 }
@@ -298,6 +345,80 @@
 }
 .comment{
   border-bottom: 2px solid #0000001f;
-  padding-bottom: 12px;
+  padding-bottom: 7px;
 }
+
+.inline-blocke{
+  display: inline-block;
+}
+
+.over{
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.name-max{
+  display: -webkit-box!important;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.owner{
+  margin-left: 4px;
+  font-weight: 400;
+  color: white;
+  background-color: #ab9f9f;
+  border-radius: 10px;
+  padding: 3px 11px;
+  font-size: 12px;
+}
+
+.edit-icon{
+  font-size: 12px;
+  color: darkgray;
+}
+
+.edit{
+  margin-top: 7px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.delete{
+  margin-left: 10px;
+  margin-top: 7px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.custom-no-comment{
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.label-project{
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.title-lab {
+  font-size: 20px;
+  display: -webkit-box !important;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.label-color-detailed{
+  margin: 3px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 12px;
+  color: white;
+  padding: 2px 12px;
+}
+
 </style>

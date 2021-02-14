@@ -1,16 +1,20 @@
 <template>
   <div class="main-detail">
     <BarChart
+      :dataTable="kanbanSort"
       class="shadow-sm p-2 mb-3 chart-color"
     />
-    <div class="detailed p-2">
+    <div class="detailed p-2"
+      v-for="kanban in kanbanSort"
+      :key="kanban.kanbanId"
+    >
       <div class="shadow-sm">
         <div class="detailed__title">
-          Report Detail
+          {{`${kanban.name} (${kanban.taskLists.length})`}}
         </div>
         <div class="detailed__content">
           <b-table responsive
-            :items="items"
+            :items="getItem(kanban.taskLists)"
             :fields="fields"
             small
             primary-key="a"
@@ -22,17 +26,16 @@
                 class="tag"
                 :style="`background-color: ${row.item.tagColor}`"
               >
-                Release
+                {{row.item.tagName}}
               </div>
             </template>
-
             <template v-slot:cell(Assign)="row">
               <div class="d-flex">
-                <img
+                <div
                   class="image-assign"
-                  :src="row.item.Assign.url"
-                  :alt="row.item.Assign.name"
                 >
+                  {{row.item.Assign.name.substr(0,1).toUpperCase()}}
+                </div>
                 {{row.item.Assign.name}}
               </div>
             </template>
@@ -71,6 +74,10 @@
   width: 20px;
   border-radius: 20px;
   margin-right: 3px;
+  background-color: orange;
+  text-align: center;
+  font-weight: bold;
+  color: white;
 }
 
 .tab-custom {
