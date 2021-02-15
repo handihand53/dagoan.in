@@ -24,7 +24,7 @@
         <div
           v-for="(member, idx) in project.data.projects.members"
           :key="member.memberId"
-          class="d-inline"
+          class="d-inline "
         >
           <div v-if="idx<3" class="cust-card__items-number">
             {{(member.userName.substr(0,1)).toUpperCase()}}
@@ -126,6 +126,7 @@
       margin-right: 5px;
     }
     &-number{
+      padding-top: 2.5px;
       -webkit-box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.4);
       -moz-box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.4);
       box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.4);

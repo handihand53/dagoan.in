@@ -126,7 +126,7 @@
         <div class="ml-2">
           <b-button
             variant="primary"
-            @click="addComment()"
+            @click="newComment && addComment()"
           >
             <font-awesome-icon
               icon="plus"
@@ -160,10 +160,10 @@
                 {{comment.userName}}
               </div>
               <div
-                v-if="ownerId === user"
+                v-if="comment.userId === user"
                 class="owner"
               >
-                Owner
+                You
               </div>
             </div>
             <div class="comment-content mt-1">
@@ -371,7 +371,7 @@
   color: white;
   background-color: #ab9f9f;
   border-radius: 10px;
-  padding: 3px 11px;
+  padding: 1px 11px;
   font-size: 12px;
 }
 

@@ -26,10 +26,16 @@ export default {
           projectId: this.$route.params.projectId,
           kanbanSection: this.kanbanLength,
           userId: Cookie.get('dataId')
+        },
+        success: () => {
+          this.$emit('added-kanban')
         }
       })
-      this.show = false
-      this.$emit('added-kanban')
+      setTimeout(() => {
+        this.projectCardTitle = ''
+        this.show = false
+        this.$emit('added-kanban')
+      }, 500)
     }
   }
 }

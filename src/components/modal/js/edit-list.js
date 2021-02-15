@@ -28,8 +28,10 @@ export default {
           userId: Cookie.get('dataId')
         }
       })
-      this.show = false
-      this.$emit('edited-kanban')
+      setTimeout(() => {
+        this.show = false
+        this.$emit('edited-kanban')
+      }, 500)
     }
   }
 }

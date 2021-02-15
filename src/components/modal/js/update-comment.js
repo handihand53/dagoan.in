@@ -34,10 +34,16 @@ export default {
           projectId: this.$route.params.projectId,
           taskListId: this.taskId,
           userId: this.dataComment.userId
+        },
+        success: () => {
+          this.$emit('editted')
         }
       })
-      this.show = false
-      this.$emit('editted')
+      setTimeout(() => {
+        this.newComment = ''
+        this.show = false
+        this.$emit('editted')
+      }, 500)
     }
   },
   watch: {

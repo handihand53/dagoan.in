@@ -46,13 +46,16 @@ export default {
           success: () => {
             this.estimatedTime = 0
             this.show = false
-            console.log('sd2www')
             this.$emit('editted-kanban')
+            this.valid = true
           }
         })
+      } else {
+        this.valid = false
       }
-      console.log('sd')
-      this.$emit('editted-kanban')
+      setTimeout(() => {
+        this.$emit('editted-kanban')
+      }, 500)
     }
   }
 }

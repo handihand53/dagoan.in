@@ -11,13 +11,15 @@
       :newMessagesCount="newMessagesCount"
       :onMessageWasSent="onMessageWasSent"
       :open="openChat"
+      :showHeader="true"
+      :disableUserListToggle="true"
       :participants="participants"
       :showCloseButton="true"
-      :showLauncher="true"
+      :showLauncher="false"
       :showEmoji="false"
       :showFile="false"
       :showTypingIndicator="showTypingIndicator"
-      :showEdition="true"
+      :showEdition="false"
       :showDeletion="false"
       :showConfirmationDeletion="false"
       :confirmationDeletionMessage="'Are you sure? (you can customize this message)'"
@@ -26,6 +28,15 @@
       @edit="editMessage"
       @remove="removeMessage"
     >
+    <template v-slot:header>
+      <div class="header-cust">
+        <font-awesome-icon
+          icon="comment-dots"
+          class="icon"
+        />
+        Chat group with {{participants.map(m=>m.name).join(', ')}}
+      </div>
+    </template>
     <template v-slot:text-message-body="{ message }">
       <small style="font-weight: bold">
         {{message.data.meta}}
@@ -42,22 +53,6 @@
         {{user.name.toUpperCase()[0]}}
       </div>
     </template>
-      <!-- <template v-slot:text-message-toolbox="scopedProps">
-        <button v-if="!scopedProps.me && scopedProps.message.type==='text'" @click.prevent="like(scopedProps.message.id)">
-          👍
-        </button>
-      </template>
-      <template v-slot:text-message-body="scopedProps">
-        <p class="sc-message--text-content" v-html="scopedProps.messageText"></p>
-        <p v-if="scopedProps.message.data.meta" class='sc-message--meta' :style="{color: scopedProps.messageColors.color}">{{scopedProps.message.data.meta}}</p>
-        <p v-if="scopedProps.message.isEdited || scopedProps.message.liked" class='sc-message--edited'>
-          <template v-if="scopedProps.message.isEdited">✎</template>
-          <template v-if="scopedProps.message.liked">👍</template>
-        </p>
-      </template> -->
-      <!-- <template v-slot:system-message-body="{ message }">
-        [System]: {{message.text}}
-      </template> -->
     </beautiful-chat>
   </div>
 </template>
@@ -76,7 +71,9 @@ export default {
       participants: [],
       titleImageUrl:
         'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
-      msg: [],
+      msg: [
+        { type: 'system', id: 231242, data: { text: 'Welcome to the chat room', meta: '04-08-2018 15:57' } }
+      ],
       messageList: [
         { type: 'text', author: `me`, id: 0, data: { text: `Why don't they have salsa on the table?` } },
         { type: 'text', author: `mattmezza`, id: 1, data: { text: `What do you need salsa for?` } },
@@ -380,7 +377,9 @@ export default {
       immediate: true,
       handler: function (data) {
         const x = this.projectsData.data.projects.members
-        this.msg = []
+        this.msg = [
+          { type: 'system', id: 231242, data: { text: 'Welcome to the chat room', meta: 'All chat are saved' } }
+        ]
         if (!this.fetched) {
           this.fetched = true
           this.participants = []
@@ -432,5 +431,26 @@ export default {
 <style scoped>
 /deep/ .sc-message {
   width: 95%!important;
+}
+
+/deep/ .sc-message-list {
+  padding: 20px 0;
+}
+
+.header-cust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 15px;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.icon{
+  margin-right: 15px;
+  margin-left: 5px;
+  font-size: 35px;
 }
 </style>

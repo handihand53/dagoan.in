@@ -6,18 +6,18 @@
         class="header__logo-brand">
       </div>
       <div class="d-flex align-items-center">
-        <font-awesome-icon
+        <!-- <font-awesome-icon
           icon="bell"
           class="mr-2 icon"
           @click="showNotif"
-        />
+        /> -->
         <font-awesome-icon
           icon="cog"
           class="icon"
         />
       </div>
     </div>
-    <div v-if="notification">
+    <!-- <div v-if="notification">
       <div
         class="bg-black-overlay"
         @click="showNotif"
@@ -54,7 +54,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 

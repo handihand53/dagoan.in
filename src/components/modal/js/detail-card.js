@@ -79,10 +79,15 @@ export default {
           taskListId: this.taskList.taskId,
           projectId: this.$route.params.projectId,
           userId: Cookie.get('dataId')
+        },
+        success: () => {
+          this.getDetail()
         }
       })
-      this.newComment = ''
-      await this.getDetail()
+      setTimeout(() => {
+        this.newComment = ''
+        this.getDetail()
+      }, 500)
     },
     async getDetail () {
       await this.getTaskDetail({
@@ -119,9 +124,14 @@ export default {
           taskListId: this.taskId,
           projectId: this.$route.params.projectId,
           userId: Cookie.get('dataId')
+        },
+        success: () => {
+          this.getDetail()
         }
       })
-      this.getDetail()
+      setTimeout(() => {
+        this.getDetail()
+      }, 500)
     }
   }
 }

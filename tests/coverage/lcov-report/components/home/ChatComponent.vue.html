@@ -459,7 +459,27 @@
 434
 435
 436
-437</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -519,11 +539,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -531,6 +546,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -842,6 +859,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -873,6 +892,27 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -908,13 +948,15 @@
       :newMessagesCount="newMessagesCount"
       :onMessageWasSent="onMessageWasSent"
       :open="openChat"
+      :showHeader="true"
+      :disableUserListToggle="true"
       :participants="participants"
       :showCloseButton="true"
-      :showLauncher="true"
+      :showLauncher="false"
       :showEmoji="false"
       :showFile="false"
       :showTypingIndicator="showTypingIndicator"
-      :showEdition="true"
+      :showEdition="false"
       :showDeletion="false"
       :showConfirmationDeletion="false"
       :confirmationDeletionMessage="'Are you sure? (you can customize this message)'"
@@ -923,6 +965,15 @@
       @edit="editMessage"
       @remove="removeMessage"
     &gt;
+    &lt;template v-slot:header&gt;
+      &lt;div class="header-cust"&gt;
+        &lt;font-awesome-icon
+          icon="comment-dots"
+          class="icon"
+        /&gt;
+        Chat group with {{participants.map(m=&gt;m.name).join(', ')}}
+      &lt;/div&gt;
+    &lt;/template&gt;
     &lt;template v-slot:text-message-body="{ message }"&gt;
       &lt;small style="font-weight: bold"&gt;
         {{message.data.meta}}
@@ -939,22 +990,6 @@
         {{user.name.toUpperCase()[0]}}
       &lt;/div&gt;
     &lt;/template&gt;
-      &lt;!-- &lt;template v-slot:text-message-toolbox="scopedProps"&gt;
-        &lt;button v-if="!scopedProps.me &amp;&amp; scopedProps.message.type==='text'" @click.prevent="like(scopedProps.message.id)"&gt;
-          👍
-        &lt;/button&gt;
-      &lt;/template&gt;
-      &lt;template v-slot:text-message-body="scopedProps"&gt;
-        &lt;p class="sc-message--text-content" v-html="scopedProps.messageText"&gt;&lt;/p&gt;
-        &lt;p v-if="scopedProps.message.data.meta" class='sc-message--meta' :style="{color: scopedProps.messageColors.color}"&gt;{{scopedProps.message.data.meta}}&lt;/p&gt;
-        &lt;p v-if="scopedProps.message.isEdited || scopedProps.message.liked" class='sc-message--edited'&gt;
-          &lt;template v-if="scopedProps.message.isEdited"&gt;✎&lt;/template&gt;
-          &lt;template v-if="scopedProps.message.liked"&gt;👍&lt;/template&gt;
-        &lt;/p&gt;
-      &lt;/template&gt; --&gt;
-      &lt;!-- &lt;template v-slot:system-message-body="{ message }"&gt;
-        [System]: {{message.text}}
-      &lt;/template&gt; --&gt;
     &lt;/beautiful-chat&gt;
   &lt;/div&gt;
 &lt;/template&gt;
@@ -973,7 +1008,9 @@ export default {
       participants: [],
       titleImageUrl:
         'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
-      msg: [],
+      msg: [
+        { type: 'system', id: 231242, data: { text: 'Welcome to the chat room', meta: '04-08-2018 15:57' } }
+      ],
       messageList: [
         { type: 'text', author: `me`, id: 0, data: { text: `Why don't they have salsa on the table?` } },
         { type: 'text', author: `mattmezza`, id: 1, data: { text: `What do you need salsa for?` } },
@@ -1277,7 +1314,9 @@ export default {
       immediate: true,
 <span class="fstat-no" title="function not covered" >      handler: function (data) {</span>
 <span class="cstat-no" title="statement not covered" >        const x = this.projectsData.data.projects.members</span>
-<span class="cstat-no" title="statement not covered" >        this.msg = []</span>
+<span class="cstat-no" title="statement not covered" >        this.msg = [</span>
+          { type: 'system', id: 231242, data: { text: 'Welcome to the chat room', meta: 'All chat are saved' } }
+        ]
 <span class="cstat-no" title="statement not covered" >        if (!this.fetched) {</span>
 <span class="cstat-no" title="statement not covered" >          this.fetched = true</span>
 <span class="cstat-no" title="statement not covered" >          this.participants = []</span>
@@ -1330,6 +1369,27 @@ export default {
 /deep/ .sc-message {
   width: 95%!important;
 }
+&nbsp;
+/deep/ .sc-message-list {
+  padding: 20px 0;
+}
+&nbsp;
+.header-cust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 15px;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+&nbsp;
+.icon{
+  margin-right: 15px;
+  margin-left: 5px;
+  font-size: 35px;
+}
 &lt;/style&gt;
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -1337,7 +1397,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Feb 15 2021 01:10:23 GMT+0700 (Western Indonesia Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Feb 15 2021 23:26:56 GMT+0700 (Western Indonesia Time)
 </div>
 </div>
 <script src="..\..\prettify.js"></script>
